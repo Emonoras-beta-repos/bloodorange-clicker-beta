@@ -30,7 +30,7 @@ function upgrade() {
     }
 }
 function upgrade2() {
-    if(total <=cs2) {
+    if(total <= cs2) {
         return alert("not enough currency");
     }
     if (total == cs2 || total >= cs2) {

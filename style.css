@@ -6,15 +6,15 @@
 #counter {
     position: absolute;
     right: 700px;
-    top: 0px;
+    top: 100px;
 }
 #clickup {
     position: absolute;
-    right: 1000px;
+    right: 1200px;
     top: 200px;
 }
 #clickup2 {
     position: absolute;
-    right: 1000px;
-    top: 300px;
+    right: 1200px;
+    top: 270px;
 }
