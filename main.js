@@ -42,3 +42,4 @@ function upgrade2() {
 }
 document.getElementById("plusone").onclick = click();
 document.getElementById("clickup").onclick = upgrade();
+document.getElementById("clickup2").onclick = upgrade2();
