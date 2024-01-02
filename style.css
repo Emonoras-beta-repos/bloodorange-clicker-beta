@@ -1,11 +1,11 @@
 #plusone {
     position: absolute;
-    right: 200px;
-    top: 300px;
+    right: 700px;
+    top: 200px;
 }
 #counter {
     position: absolute;
-    right: 200px;
+    right: 700px;
     top: 0px;
 }
 #clickup {
@@ -16,5 +16,5 @@
 #clickup2 {
     position: absolute;
     right: 1000px;
-    top: 500px;
+    top: 700px;
 }
