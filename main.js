@@ -6,11 +6,11 @@ var uppower = 1;
 var uppower2 = 0;
 function update() {
     var counter = document.getElementById("counter");
-    counter.innerHTML = "Total currency is: "+total+"";
+    counter.innerHTML = "Total currency is: " + total;
     var bttn1 = document.getElementById("clickup");
-    bttn1.innerHTML = "This click upgrade costs: " + cs1;
+    bttn1.innerHTML = "This click upgrade costs: " + cs1 + " currency";
     var bttn2 = document.getElementById("clickup2");
-    bttn2.innerHTML = "This click upgrade costs and adds 10 instead of 1: " + cs2;
+    bttn2.innerHTML = "This click upgrade that adds 10 costs: " + cs2 + " currency";
 
 }
 function click() {
