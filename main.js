@@ -6,7 +6,7 @@ var uppower = 1;
 var uppower2 = 0;
 function update() {
     var counter = document.getElementById("counter");
-    counter.innerHTML = "Total currency: " + total;
+    counter.innerHTML = "Total currency is: "+total+"";
     var bttn1 = document.getElementById("clickup");
     bttn1.innerHTML = "This click upgrade costs: " + cs1;
     var bttn2 = document.getElementById("clickup2");
