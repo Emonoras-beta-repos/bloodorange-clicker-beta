@@ -5,16 +5,13 @@ var cs2 = 100;
 var uppower = 1;
 var uppower2 = 0;
 function update() {
-    var counter = document.getElementById("counter");
-    counter.innerHTML = "Total currency is: " + total;
-    var bttn1 = document.getElementById("clickup");
-    bttn1.innerHTML = "This click upgrade costs: " + cs1 + " currency";
-    var bttn2 = document.getElementById("clickup2");
-    bttn2.innerHTML = "This click upgrade that adds 10 costs: " + cs2 + " currency";
-
+    $("plusone").text("Total Currecy is: " + total)
+    $("clickup").text("This click upgrade costs: " + cs1 + " currency")
+    $("clickup2").text("This click upgrade that adds 10 costs: " + cs2 + " currency")
 }
 function click() {
     total += uppower;
+    $("plusone").text("Total Currecy is: " + total)
     update()
 }
 function upgrade() {
@@ -24,8 +21,10 @@ function upgrade() {
     }
     if (total == cs1 || total >= cs1) {
         total -= cs1;
+        $("plusone").text("Total Currecy is: " + total)
         cs1 += 10;
         uppower++;
+        $("clickup").text("This click upgrade costs: " + cs1 + " currency")
         update()
     }
 }
