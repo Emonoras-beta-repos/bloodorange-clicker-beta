@@ -17,6 +17,29 @@
                 size: 50px;
 
             }
+            .shop {
+                position: absolute;
+                top: -10px;
+                left: 415px;
+            }
+            .buildings {
+                position: absolute;
+                top: 50px;
+                left: 415px;
+                size: 50px;
+            }
+            .cursor {
+                position: absolute;
+                width: 70px;
+                height: 70px;
+            }
+            .btn-cfiuc {
+                cursor: pointer;
+                position: absolute;
+                background-color: #ff821b;
+                border-color: black;
+                border-radius: 5px;
+            }
             html {
                 background-color: #e7700e;
             }
@@ -49,7 +72,8 @@
             <div class="buildings">
                 <div class="cursor">
                     <button type="button" class="btn-cfiuc" onclick="purchase('cursor')"> Purchase a cursor</button>
-                    <p class="cursor-owned">You Own: 0</p>
+                    <br>
+                    <p class="cursor-owned">Owned: 0</p>
                     <p class="cursor-cost">Cost: 10</p>
                 </div>
             </div>
@@ -60,6 +84,7 @@
         function sleep(ms) {
             return new Promise(resolve => setTimeout(resolve, ms));
         }
+        let ccost = 10;
         let score = 0;
         let buildings = [0];
         let h3 = document.getElementsByClassName("scorenum");
@@ -95,14 +120,16 @@
 
         function purchase (building) {
             if (building == "cursor") {
-                if (score >= 10) {
-                    score -= 10;
+                if (score >= ccost) {
+                    score -= ccost;
+                    scoreupdate(score);
                     console.log(buildings);
                     buildings.splice(0,1,buildings[0]+1);
                     console.log(buildings);
                     setcookies(score);
                     $('.cursor-owned').text("You Own: " + buildings[0]);
                     $('.cursor-cost').text("Cost: " + (10 * Math.pow(2, buildings[0])));
+                    ccost = 10 * Math.pow(2, buildings[0]);
                 } else {
                     alert("Not enough points!");
                 }
