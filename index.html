@@ -43,6 +43,17 @@
             <h3 class="scorenum">0</h3>
           <button type="button" class="btn-cfc" onclick="scoreupdate()"></button>
         </main>
+        <main class="shop">
+            <div class="upgrades"></div>
+            <br>
+            <div class="buildings">
+                <div class="cursor">
+                    <button type="button" class="btn-cfiuc" onclick="purchase('cursor')"> Purchase a cursor</button>
+                    <p class="cursor-owned">You Own: 0</p>
+                    <p class="cursor-cost">Cost: 10</p>
+                </div>
+            </div>
+        </main>
     </body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
     <script>
@@ -50,6 +61,7 @@
             return new Promise(resolve => setTimeout(resolve, ms));
         }
         let score = 0;
+        let buildings = [0];
         let h3 = document.getElementsByClassName("scorenum");
         function getcookies () {
             var cookies = document.cookie.split(';');
@@ -68,11 +80,33 @@
 
         async function scoreupdate () {
             score++;
+            if (buildings[0] > 0) {
+                let totcursor = buildings[0];
+                let upgradebonus = 0;
+                score += totcursor;
+                score += upgradebonus;
+            }
             $('.scorenum').text(score);
             $(h3).addClass('scoreupd');
             await sleep(51);
             $(h3).removeClass('scoreupd');
             setcookies(score);
+        }
+
+        function purchase (building) {
+            if (building == "cursor") {
+                if (score >= 10) {
+                    score -= 10;
+                    console.log(buildings);
+                    buildings.splice(0,1,buildings[0]+1);
+                    console.log(buildings);
+                    setcookies(score);
+                    $('.cursor-owned').text("You Own: " + buildings[0]);
+                    $('.cursor-cost').text("Cost: " + (10 * Math.pow(2, buildings[0])));
+                } else {
+                    alert("Not enough points!");
+                }
+            }
         }
     </script>
 </html>
