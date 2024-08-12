@@ -17,6 +17,18 @@
                 size: 50px;
 
             }
+            .btn-sv {
+                padding: 10px;
+                margin: 10px;
+                cursor: pointer;
+                position: absolute;
+                top: 470px;
+                left: 890px;
+                background-color: #ff821b;
+                border-color: black;
+                border-radius: 5px;
+                size: 50px;
+            }
             html {
                 background-color: #e7700e;
             }
@@ -76,6 +88,7 @@
         <main class="game">
             <h3 class="scorenum">0</h3>
           <button type="button" class="btn-cfc" onclick="scoreupdate()"></button>
+          <button type="button" class="btn-sv" onclick="saveprogress()">Save Progress</button>
         </main>
     </body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
@@ -91,15 +104,20 @@
         }
         if (getcookies() != null) {
             $('.scorenum').text(getcookies());
+            score = getcookies(); // update score value to avoid re-calculating it in case of page refresh or back navigation.
         } else {
             setcookies(score);
         }
 
         function scoreupdate () {
             score++;
-            $('.scorenum').text(score).addClass('scoreupd');
+            $('.scorenum').text(score);
+            $('.scorenum').addClass('scoreupd');
+            $('.scorenum').removeClass('scoreupd');
+        }
+        function saveprogress () {
             setcookies(score);
-            $('.scorenum').text(score).removeClass('scoreupd');
+            alert('Progress saved');
         }
     </script>
 </html>
