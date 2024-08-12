@@ -75,7 +75,7 @@
     <body>
         <main class="game">
             <h3 class="scorenum">0</h3>
-          <button type="button" class="btn-cfc"></button>
+          <button type="button" class="btn-cfc" onclick="scoreupdate()"></button>
         </main>
     </body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
@@ -93,6 +93,13 @@
             $('.scorenum').text(getcookies());
         } else {
             setcookies(score);
+        }
+
+        function scoreupdate () {
+            score++;
+            $('.scorenum').text(score).addClass('scoreupd');
+            setcookies(score);
+            $('.scorenum').text(score).removeClass('scoreupd');
         }
     </script>
 </html>
