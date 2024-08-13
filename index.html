@@ -124,8 +124,8 @@
             $('.cursor-cost').text("Cost: " + (10 * Math.pow(2, buildings[0])));
             ccost = 10 * Math.pow(2, buildings[0]);
         } else {
-            setcookies("score");
-            setcookies("buildings"); // update buildings value to avoid re-cal
+            setcookies(score);
+            setcookies(buildings); // update buildings value to avoid re-cal
         }
 
         async function scoreupdate () {
