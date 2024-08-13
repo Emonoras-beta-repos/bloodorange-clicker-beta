@@ -26,12 +26,12 @@
                 position: absolute;
                 top: 50px;
                 left: 415px;
-                size: 50px;
+                size: 90px;
             }
             .cursor {
                 position: absolute;
-                width: 70px;
-                height: 70px;
+                width: 90px;
+                height: 90px;
             }
             .btn-cfiuc {
                 cursor: pointer;
@@ -53,26 +53,30 @@
             }
             @keyframes scoreupd {
                 0% {transform: scale(1);}
-                20% {transform: scale(1.2);}
-                40% {transform: scale(1.3);}
                 60% {transform: scale(1.2);}
                 80% {transform: scale(1.1);}
                 100% {transform: scale(1);}
             }
+            /*Add autoajusting css here */
+        /* @media screen and (max-width: 480px) 
+            {
+            Styling for smaller windows goes here.
+            }
+            */
         </style>
     </head>
     <body>
         <main class="game">
             <h3 class="scorenum">0</h3>
-          <button type="button" class="btn-cfc" onclick="scoreupdate()"></button>
+          <button type="button" class="btn-cfc" onclick="scoreupdate()" title="THE BUTTON OF DOOM"></button>
         </main>
         <main class="shop">
             <div class="upgrades"></div>
             <br>
             <div class="buildings">
                 <div class="cursor">
-                    <button type="button" class="btn-cfiuc" onclick="purchase('cursor')"> Purchase a cursor</button>
-                    <br>
+                    <button type="button" class="btn-cfiuc" onclick="purchase('cursor')" title="Increases currency gained per click"> Purchase a cursor</button>
+                    <br style="line-height: 15px;"> a</br>
                     <p class="cursor-owned">Owned: 0</p>
                     <p class="cursor-cost">Cost: 10</p>
                 </div>
