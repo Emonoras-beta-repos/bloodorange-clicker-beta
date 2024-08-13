@@ -115,18 +115,17 @@
         }
 
         // load cookies on page load and update score value accordingly.
-        if (getcookies(score) != null) {
-            $('.scorenum').text(getcookies(score));
-            score = getcookies(score); // update score value to avoid re-calculating it in case of page refresh or back navigation.
-        } if (getcookies(buildings) != null) {
-            score = getcookies(buildings)[0];
-            buildings = getcookies(buildings); // update buildings value to avoid re-calculating it in case of page refresh or back navigation.
+        if (getcookies("score") != null) {
+            $('.scorenum').text(getcookies("score"));
+            score = getcookies("score"); // update score value to avoid re-calculating it in case of page refresh or back navigation.
+        } if (getcookies("buildings") != null) {
+            buildings = getcookies("buildings"); // update buildings value to avoid re-calculating it in case of page refresh or back navigation.
             $('.cursor-owned').text("You Own: " + buildings[0]);
             $('.cursor-cost').text("Cost: " + (10 * Math.pow(2, buildings[0])));
             ccost = 10 * Math.pow(2, buildings[0]);
         } else {
-            setcookies(score);
-            setcookies(buildings);
+            setcookies("score");
+            setcookies("buildings"); // update buildings value to avoid re-cal
         }
 
         async function scoreupdate () {
