@@ -105,7 +105,7 @@
             }
             if (cookie = "buildings") {
                 var buildingsCookie = cookies.find(c => c.trim().startsWith('buildings='));
-                return buildingsCookie? JSON.parse(buildingsCookie.split('=')[1]) : [0];
+                let array = JSON.parse(cookies.substring('array='.length));
             }
         }
 
