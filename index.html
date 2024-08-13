@@ -85,24 +85,45 @@
     </body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
     <script>
+        // score, upgrades, and buildings variables
+        let score = 0;
+        let buildings = [0];
+        // cost variables
+        let ccost = 10;
+        // extra variables
+        let h3 = document.getElementsByClassName("scorenum");
+
         function sleep(ms) {
             return new Promise(resolve => setTimeout(resolve, ms));
         }
-        let ccost = 10;
-        let score = 0;
-        let buildings = [0];
-        let h3 = document.getElementsByClassName("scorenum");
-        function getcookies () {
+
+        function getcookies (cookie) {
             var cookies = document.cookie.split(';');
-            var scoreCookie = cookies.find(c => c.trim().startsWith('score='));
-            return scoreCookie? parseInt(scoreCookie.split('=')[1]) : 0;
+            if (cookie = "score") {
+                var scoreCookie = cookies.find(c => c.trim().startsWith('score='));
+                return scoreCookie? parseInt(scoreCookie.split('=')[1]) : 0;
+            }
+            if (cookie = "buildings") {
+                var buildingsCookie = cookies.find(c => c.trim().startsWith('buildings='));
+                return buildingsCookie? JSON.parse(buildingsCookie.split('=')[1]) : [0];
+            }
         }
-        function setcookies (score) {
+
+        function setcookies (score, buildings) {
             document.cookie ='score=' + score + '; path=/';
+            document.cookie ='buildings=' + JSON.stringify(buildings) + '; path=/';
         }
-        if (getcookies() != null) {
-            $('.scorenum').text(getcookies());
-            score = getcookies(); // update score value to avoid re-calculating it in case of page refresh or back navigation.
+
+        // load cookies on page load and update score value accordingly.
+        if (getcookies(score) != null) {
+            $('.scorenum').text(getcookies(score));
+            score = getcookies(score); // update score value to avoid re-calculating it in case of page refresh or back navigation.
+        } if (getcookies(buildings) != null) {
+            score = getcookies(buildings)[0];
+            buildings = getcookies(buildings); // update buildings value to avoid re-calculating it in case of page refresh or back navigation.
+            $('.cursor-owned').text("You Own: " + buildings[0]);
+            $('.cursor-cost').text("Cost: " + (10 * Math.pow(2, buildings[0])));
+            ccost = 10 * Math.pow(2, buildings[0]);
         } else {
             setcookies(score);
         }
