@@ -126,6 +126,9 @@
         } else {
             setcookies(score);
             setcookies(buildings); // update buildings value to avoid re-cal
+            ccost = 10 * Math.pow(2, buildings[0]);
+            $('.cursor-owned').text("You Own: " + buildings[0]);
+            $('.cursor-cost').text("Cost: " + (10 * Math.pow(2, buildings[0])));
         }
 
         async function scoreupdate () {
