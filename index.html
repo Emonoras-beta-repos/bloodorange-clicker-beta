@@ -106,6 +106,7 @@
             return score;
         }
         if (cookie.startsWith("buildings=")) {
+            console.log(cookie);
             if (cookie.charAt(0) == '=') {
                 console.log("needed a trim");
                 cookie = cookies[i].trim();
@@ -115,7 +116,9 @@
                 cookie = cookies[i+1].trim();
                 i--;
             }
+            console.log(cookie);
             let dcodeca = JSON.parse("[" + cookie.substring("buildings".length) + "]");
+            console.log(cookie);
             console.log(dcodeca);
             if (dcodeca != "undefined" && dcodeca != "NaN" && dcodeca != null && cookie.charAt(0) != '=' && cookie.charAt(1) != '=' && cookie.charAt(2) != '=' ) {
                 buildings = dcodeca;
