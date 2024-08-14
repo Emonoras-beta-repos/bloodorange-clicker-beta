@@ -98,16 +98,16 @@
         }
 
         function getcookies (cookie) {
-            var cookies = document.cookie.split(';');
-            if (cookie = "score") {
-                var scoreCookie = cookies.find(c => c.trim().startsWith('score='));
-                return scoreCookie? parseInt(scoreCookie.split('=')[1]) : 0;
-            }
-            if (cookie = "buildings") {
-                var buildingsCookie = cookies.find(c => c.trim().startsWith('buildings='));
-                return buildingsCookie? buildingsCookie.split('=')[1].split(',').map(Number) : [0,0,0,0,0];
-            }
+        var cookies = document.cookie.split(';');
+        if (cookie === "score") {
+            var scoreCookie = cookies.find(c => c.trim().startsWith('score='));
+            return scoreCookie ? parseInt(scoreCookie.split('=')[1]) : 0;
         }
+        if (cookie === "buildings") {
+            var buildingsCookie = cookies.find(c => c.trim().startsWith('buildings='));
+            return buildingsCookie ? buildingsCookie.split('=')[1].split(',').map(Number) : [0, 0, 0, 0, 0];
+        }
+    }
 
         function setcookies (score, buildings) {
             document.cookie ='score=' + score + '; path=/';
@@ -121,7 +121,7 @@
         } if (getcookies("buildings") != null) {
             buildings = getcookies("buildings"); // update buildings value to avoid re-calculating it in case of page refresh or back navigation.
             console.log(buildings); 
-            if (buildings != "undefined" && buildings != "NaN" && builds != null) {
+            if (buildings != "undefined" && buildings != "NaN" && buildings != null) {
                 console.log(buildings);
                 $('.cursor-owned').text("You Own: " + buildings[0]);
                 $('.cursor-cost').text("Cost: " + (10 * Math.pow(2, buildings[0])));
