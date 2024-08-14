@@ -106,6 +106,9 @@
             return score;
         }
         if (cookie.startsWith("buildings=")) {
+            if (cookie.charAt(0) == '=') {
+                cookie = cookies[i].trim();
+            }
             let dcodeca = JSON.parse("[" + cookie.substring("buildings".length) + "]");
             console.log(dcodeca);
             if (dcodeca != "undefined" && dcodeca != "NaN" && dcodeca != null) {
