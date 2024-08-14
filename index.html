@@ -112,7 +112,7 @@
             }
             let dcodeca = JSON.parse("[" + cookie.substring("buildings".length) + "]");
             console.log(dcodeca);
-            if (dcodeca != "undefined" && dcodeca != "NaN" && dcodeca != null) {
+            if (dcodeca != "undefined" && dcodeca != "NaN" && dcodeca != null && cookie.charAt(0) != '=' && cookie.charAt(1) != '=' && cookie.charAt(2) != '=' ) {
                 buildings = dcodeca;
                 return;
             }
