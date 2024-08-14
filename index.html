@@ -105,7 +105,7 @@
             score = parseInt(cookie.substring("score=".length));
             return score;
         }
-        if (cookie.startsWith("myArray=")) {
+        if (cookie.startsWith("buildings=")) {
             let dcodeca = JSON.parse("[" + cookie.substring("buildings".length) + "]");
             console.log(dcodeca);
             if (dcodeca != "undefined" && dcodeca != "NaN" && dcodeca != null) {
