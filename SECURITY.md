@@ -11,4 +11,4 @@ currently being supported with security updates.
 
 ## Reporting a Vulnerability
 
-You should report the vulnerability to the repo via an issue preferably. But as long as I can see the message it doesn't really matter
+You should report the vulnerability to the repo via private issue reporting.
