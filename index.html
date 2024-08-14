@@ -107,8 +107,13 @@
         }
         if (cookie.startsWith("buildings=")) {
             if (cookie.charAt(0) == '=') {
-                console.log("needed a trim")
+                console.log("needed a trim");
                 cookie = cookies[i].trim();
+            }
+            if (cookie.charAt(1) == '=') {
+                console.log("needed a trim for the second one");
+                cookie = cookies[i+1].trim();
+                i--;
             }
             let dcodeca = JSON.parse("[" + cookie.substring("buildings".length) + "]");
             console.log(dcodeca);
