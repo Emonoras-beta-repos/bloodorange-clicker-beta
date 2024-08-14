@@ -138,9 +138,9 @@
             buildings = [0,0,0,0,0];
             console.log(buildings);
         } else {
-            setcookies(score);
+            setcookies(score, buildings);
             buildings = [0,0,0,0,0];
-            setcookies(buildings); // update buildings value to avoid re-cal
+            setcookies(score, buildings); // update buildings value to avoid re-cal
             ccost = 10 * Math.pow(2, buildings[0]);
             $('.cursor-owned').text("You Own: " + buildings[0]);
             $('.cursor-cost').text("Cost: " + (10 * Math.pow(2, buildings[0])));
@@ -158,7 +158,7 @@
             $(h3).addClass('scoreupd');
             await sleep(51);
             $(h3).removeClass('scoreupd');
-            setcookies(score);
+            setcookies(score, buildings);
         }
 
         function purchase (building) {
@@ -169,7 +169,7 @@
                     console.log(buildings);
                     buildings.splice(0,1,buildings[0]+1);
                     console.log(buildings);
-                    setcookies(score);
+                    setcookies(score, buildings);
                     $('.cursor-owned').text("You Own: " + buildings[0]);
                     $('.cursor-cost').text("Cost: " + (10 * Math.pow(2, buildings[0])));
                     ccost = 10 * Math.pow(2, buildings[0]);
