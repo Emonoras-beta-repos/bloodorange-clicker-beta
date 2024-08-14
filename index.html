@@ -157,7 +157,7 @@
                     score -= ccost;
                     scoreupdate(score);
                     console.log(buildings);
-                    buildings[0].splice(0,1,buildings[0]+1);
+                    buildings.splice(0,1,buildings[0]+1);
                     console.log(buildings);
                     setcookies(score);
                     $('.cursor-owned').text("You Own: " + buildings[0]);
