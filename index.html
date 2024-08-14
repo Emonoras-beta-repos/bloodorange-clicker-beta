@@ -105,13 +105,13 @@
             }
             if (cookie = "buildings") {
                 var buildingsCookie = cookies.find(c => c.trim().startsWith('buildings='));
-                let array = JSON.parse(cookies.substring('array='.length));
+                return buildingsCookie? buildingsCookie.split('=')[1].split(',').map(Number) : [0,0,0,0,0];
             }
         }
 
         function setcookies (score, buildings) {
             document.cookie ='score=' + score + '; path=/';
-            document.cookie ='buildings=' + JSON.stringify(buildings) + '; path=/';
+            document.cookie = 'buildings=' + buildings + '; path=/';
         }
 
         // load cookies on page load and update score value accordingly.
