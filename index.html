@@ -99,19 +99,27 @@
 
         function getcookies (cookie) {
         var cookies = document.cookie.split(';');
-        if (cookie === "score") {
-            var scoreCookie = cookies.find(c => c.trim().startsWith('score='));
-            return scoreCookie ? parseInt(scoreCookie.split('=')[1]) : 0;
+        for (let i = 0; i < cookies.length; i++) {
+        let cookie = cookies[i].trim();
+        if (cookie.startsWith("score=")) {
+            score = parseInt(cookie.substring("score=".length));
+            return score;
         }
-        if (cookie === "buildings") {
-            var buildingsCookie = cookies.find(c => c.trim().startsWith('buildings='));
-            return buildingsCookie ? buildingsCookie.split('=')[1].split(',').map(Number) : [0];
-        } 
+        if (cookie.startsWith("myArray=")) {
+            let dcodeca = JSON.parse("[" + cookie.substring("buildings".length) + "]");
+            console.log(dcodeca);
+            if (dcodeca != "undefined" && dcodeca != "NaN" && dcodeca != null) {
+                buildings = dcodeca;
+                return;
+            }
+            return;
+        }
+        }
     }
 
         function setcookies (score, buildings) {
             document.cookie ='score=' + score + '; path=/';
-            document.cookie = 'buildings=' + buildings + '; path=/';
+            document.cookie = "buildings=" + JSON.stringify(buildings) + "; path=/";
         }
 
         // load cookies on page load and update score value accordingly.
