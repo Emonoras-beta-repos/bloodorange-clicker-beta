@@ -120,10 +120,12 @@
             score = getcookies("score"); // update score value to avoid re-calculating it in case of page refresh or back navigation.
         } if (getcookies("buildings") != null) {
             buildings = getcookies("buildings"); // update buildings value to avoid re-calculating it in case of page refresh or back navigation.
-            if (buildings != undefined && buildings != NaN) {
-            $('.cursor-owned').text("You Own: " + buildings[0]);
-            $('.cursor-cost').text("Cost: " + (10 * Math.pow(2, buildings[0])));
-            ccost = 10 * Math.pow(2, buildings[0]);
+            console.log(buildings); 
+            if (buildings != "undefined" && buildings != "NaN" && builds != null) {
+                console.log(buildings);
+                $('.cursor-owned').text("You Own: " + buildings[0]);
+                $('.cursor-cost').text("Cost: " + (10 * Math.pow(2, buildings[0])));
+                ccost = 10 * Math.pow(2, buildings[0]);
 
         }
             buildings = [0,0,0,0,0];
