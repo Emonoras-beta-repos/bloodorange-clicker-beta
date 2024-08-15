@@ -135,7 +135,8 @@
             document.cookie ='score=' + score + '; path=/';
             console.log(score);
             console.log(buildings);
-            document.cookie = "buildings=" + JSON.stringify(buildings) + "; path=/";
+            let buildingcookie = document.cookie = "buildings=" + JSON.stringify(buildings) + "; path=/";
+            console.log(buildingcookie);
         }
 
         // load cookies on page load and update score value accordingly.
