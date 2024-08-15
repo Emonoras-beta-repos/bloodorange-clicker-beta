@@ -101,3 +101,14 @@ function purchase(building) {
     }
   }
 }
+async function updatecounter() {
+  let h3text = parseInt($(".scorenum").text());
+  if (h3text < score) {
+    $(".scorenum").text(score);
+    $(h3).addClass("scoreupd");
+    await sleep(51);
+    $(h3).removeClass("scoreupd");
+  }
+  setcookies(score, buildings);
+}
+setInterval(updatecounter, 1000);
