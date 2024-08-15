@@ -98,7 +98,8 @@
         }
 
         function getcookies (cookie) {
-        var cookies = document.cookie.split(';');
+        let cookies = document.cookie.split(';');
+        let newcookie;
         for (let i = 0; i < cookies.length; i++) {
         let cookie = cookies[i].trim();
         if (cookie.startsWith("score=")) {
@@ -108,14 +109,13 @@
         if (cookie.startsWith("buildings=")) {
             console.log(cookie);
             if (cookie.charAt(9) == "=") {
-                cookie.slice(9, "");
-                cookie[i].trim();
-                console.log('trimmed the equals')
+                newcookie = cookie.replace("=", " ");
+                newcookie.trim();
             }
             console.log(i);
-            console.log(cookie);
-            let dcodeca = JSON.parse("[" + cookie.substring("buildings".length) + "]");
-            console.log(cookie);
+            console.log(newcookie);
+            let dcodeca = JSON.parse("[" + newcookie.substring("buildings".length) + "]");
+            console.log(newcookie);
             console.log(dcodeca);
             if (dcodeca != "undefined" && dcodeca != "NaN" && dcodeca != null && cookie.charAt(0) != '=' && cookie.charAt(1) != '=' && cookie.charAt(2) != '=' ) {
                 buildings = dcodeca;
