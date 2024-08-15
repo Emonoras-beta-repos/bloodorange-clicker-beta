@@ -141,6 +141,7 @@
 
         // load cookies on page load and update score value accordingly.
         buildings = getcookies("buildings");
+        console.log(buildings);
         if (getcookies("score") != null) {
             $('.scorenum').text(getcookies("score"));
             score = getcookies("score"); // update score value to avoid re-calculating it in case of page refresh or back navigation.
