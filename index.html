@@ -108,7 +108,8 @@
         if (cookie.startsWith("buildings=")) {
             console.log(cookie);
             if (cookie.charAt(9) == "=") {
-                cookie[i].slice(9);
+                cookie.slice(9, "");
+                cookie[i].trim();
                 console.log('trimmed the equals')
             }
             console.log(i);
