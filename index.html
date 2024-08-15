@@ -140,10 +140,11 @@
         }
 
         // load cookies on page load and update score value accordingly.
+        buildings = getcookies("buildings");
         if (getcookies("score") != null) {
             $('.scorenum').text(getcookies("score"));
             score = getcookies("score"); // update score value to avoid re-calculating it in case of page refresh or back navigation.
-        } if (getcookies("buildings") != "null" && getcookies(buildings) != "NaN" && getcookies("buildings") != "undefined") {
+        } if (buildings !== null && typeof buildings !== 'undefined' && buildings !== 'NaN') {
             buildings = getcookies("buildings"); // update buildings value to avoid re-calculating it in case of page refresh or back navigation.
             console.log(buildings); 
             if (buildings != "undefined" && buildings != "NaN" && buildings != null) {
