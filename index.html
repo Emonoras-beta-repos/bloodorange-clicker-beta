@@ -121,7 +121,7 @@
                 let dcodeca = JSON.parse("[" + newcookie.substring("buildings".length) + "]");
                 console.log(newcookie);
                 console.log(dcodeca);
-                if (dcodeca != "undefined" && dcodeca != "NaN" && dcodeca != null) {
+                if (typeof dcodeca != "undefined" && dcodeca != "NaN" && dcodeca != null) {
                     buildings = dcodeca;
                 }
                 }
