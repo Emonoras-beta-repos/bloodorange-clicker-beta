@@ -133,6 +133,8 @@
 
         function setcookies (score, buildings) {
             document.cookie ='score=' + score + '; path=/';
+            console.log(score);
+            console.log(buildings);
             document.cookie = "buildings=" + JSON.stringify(buildings) + "; path=/";
         }
 
