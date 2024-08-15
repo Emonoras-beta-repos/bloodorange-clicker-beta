@@ -12,76 +12,58 @@ function sleep(ms) {
 
 function getcookies(neededcookie) {
   let cookies = document.cookie.split(";");
-  let newcookie;
   for (let i = 0; i < cookies.length; i++) {
     let cookie = cookies[i].trim();
-    if (neededcookie === "score") {
-      if (cookie.startsWith("score=")) {
-        score = parseInt(cookie.substring("score=".length));
-        return score;
-      }
+    if (neededcookie === "score" && cookie.startsWith("score=")) {
+      score = parseInt(cookie.substring("score=".length));
+      return score;
     }
-    if (neededcookie === "buildings") {
-      if (cookie.startsWith("buildings=")) {
-        console.log(cookie);
-        if (cookie.charAt(9) == "=") {
-          newcookie = cookie.replace("=", " ");
-          newcookie.trim();
-        }
-        console.log(i);
-        console.log(newcookie);
-        let dcodeca = JSON.parse(
-          "[" + newcookie.substring("buildings".length) + "]"
-        );
-        console.log(newcookie);
-        console.log(dcodeca);
-        if (
-          typeof dcodeca != "undefined" &&
-          dcodeca != "NaN" &&
-          dcodeca != null
-        ) {
-          buildings = dcodeca;
-        }
+    if (neededcookie === "buildings" && cookie.startsWith("buildings=")) {
+      let newcookie = cookie.substring("buildings=".length).trim();
+      try {
+        let dcodeca = JSON.parse(newcookie);
+        return dcodeca; // Return the parsed buildings array
+      } catch (e) {
+        console.error("Failed to parse buildings cookie:", e);
+        return null; // Handle JSON parsing errors
       }
     }
   }
+  return null; // Default return value if cookie is not found
 }
 
 function setcookies(score, buildings) {
-  document.cookie = "score=" + score + "; path=/";
+  let scorecookie = (document.cookie = "score=" + score + "; path=/");
   console.log(score);
   console.log(buildings);
   let buildingcookie = (document.cookie =
     "buildings=" + JSON.stringify(buildings) + "; path=/");
   console.log(buildingcookie);
+  console.log(scorecookie);
 }
 
 // load cookies on page load and update score value accordingly.
-buildings = getcookies("buildings");
-console.log(buildings);
 if (getcookies("score") != null) {
   $(".scorenum").text(getcookies("score"));
   score = getcookies("score"); // update score value to avoid re-calculating it in case of page refresh or back navigation.
 }
-if (
-  buildings !== null &&
-  typeof buildings !== "undefined" &&
-  buildings !== "NaN"
-) {
-  buildings = getcookies("buildings"); // update buildings value to avoid re-calculating it in case of page refresh or back navigation.
-  console.log(buildings);
-  if (buildings != "undefined" && buildings != "NaN" && buildings != null) {
+
+buildings = getcookies("buildings");
+console.log(buildings);
+if (buildings !== null && Array.isArray(buildings)) {
+  if (
+    buildings.length > 0 &&
+    buildings[0] !== "undefined" &&
+    buildings[0] !== "NaN"
+  ) {
     console.log(buildings);
     $(".cursor-owned").text("You Own: " + buildings[0]);
     $(".cursor-cost").text("Cost: " + 10 * Math.pow(2, buildings[0]));
     ccost = 10 * Math.pow(2, buildings[0]);
   }
-  //buildings = [0,0,0,0,0];
-  console.log(buildings);
 } else {
   buildings = [0, 0, 0, 0, 0];
   setcookies(score, buildings);
-  setcookies(score, buildings); // update buildings value to avoid re-cal
   ccost = 10 * Math.pow(2, buildings[0]);
   $(".cursor-owned").text("You Own: " + buildings[0]);
   $(".cursor-cost").text("Cost: " + 10 * Math.pow(2, buildings[0]));
@@ -106,7 +88,7 @@ function purchase(building) {
   if (building == "cursor") {
     if (score >= ccost) {
       score -= ccost;
-      scoreupdate(score);
+      scoreupdate();
       console.log(buildings);
       buildings.splice(0, 1, buildings[0] + 1);
       console.log(buildings);
