@@ -154,8 +154,8 @@
             //buildings = [0,0,0,0,0];
             console.log(buildings);
         } else {
-            setcookies(score, buildings);
             buildings = [0,0,0,0,0];
+            setcookies(score, buildings);
             setcookies(score, buildings); // update buildings value to avoid re-cal
             ccost = 10 * Math.pow(2, buildings[0]);
             $('.cursor-owned').text("You Own: " + buildings[0]);
