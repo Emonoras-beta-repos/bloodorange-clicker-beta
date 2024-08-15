@@ -1,0 +1,66 @@
+.btn-cfc {
+  padding: 10px;
+  margin: 10px;
+  cursor: pointer;
+  position: absolute;
+  top: 250px;
+  left: 100px;
+  background-color: #ff821b;
+  border-color: black;
+  border-radius: 5px;
+  size: 50px;
+}
+.shop {
+  position: absolute;
+  top: -10px;
+  left: 415px;
+}
+.buildings {
+  position: absolute;
+  top: 50px;
+  left: 415px;
+  size: 90px;
+}
+.cursor {
+  position: absolute;
+  width: 90px;
+  height: 90px;
+}
+.btn-cfiuc {
+  cursor: pointer;
+  position: absolute;
+  background-color: #ff821b;
+  border-color: black;
+  border-radius: 5px;
+}
+html {
+  background-color: #e7700e;
+}
+.scorenum {
+  position: absolute;
+  top: -21px;
+  left: 0px;
+}
+.scoreupd {
+  animation: scoreupd 0.05s linear;
+}
+@keyframes scoreupd {
+  0% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(1.2);
+  }
+  80% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+/*Add autoajusting css here */
+/* @media screen and (max-width: 480px) 
+{
+Styling for smaller windows goes here.
+}
+*/
