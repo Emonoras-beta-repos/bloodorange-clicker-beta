@@ -142,7 +142,7 @@
         if (getcookies("score") != null) {
             $('.scorenum').text(getcookies("score"));
             score = getcookies("score"); // update score value to avoid re-calculating it in case of page refresh or back navigation.
-        } if (getcookies() != null) {
+        } if (getcookies("buildings") != null) {
             buildings = getcookies("buildings"); // update buildings value to avoid re-calculating it in case of page refresh or back navigation.
             console.log(buildings); 
             if (buildings != "undefined" && buildings != "NaN" && buildings != null) {
