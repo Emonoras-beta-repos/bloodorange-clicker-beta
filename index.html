@@ -97,32 +97,37 @@
             return new Promise(resolve => setTimeout(resolve, ms));
         }
 
-        function getcookies (cookie) {
+        function getcookies (neededcookie) {
         let cookies = document.cookie.split(';');
         let newcookie;
         for (let i = 0; i < cookies.length; i++) {
-        let cookie = cookies[i].trim();
-        if (cookie.startsWith("score=")) {
-            score = parseInt(cookie.substring("score=".length));
-            return score;
-        }
-        if (cookie.startsWith("buildings=")) {
-            console.log(cookie);
-            if (cookie.charAt(9) == "=") {
-                newcookie = cookie.replace("=", " ");
-                newcookie.trim();
+            let cookie = cookies[i].trim();
+            if (neededcookie === "score") {
+                if (cookie.startsWith("score=")) {
+                score = parseInt(cookie.substring("score=".length));
+                return score;
             }
-            console.log(i);
-            console.log(newcookie);
-            let dcodeca = JSON.parse("[" + newcookie.substring("buildings".length) + "]");
-            console.log(newcookie);
-            console.log(dcodeca);
-            if (dcodeca != "undefined" && dcodeca != "NaN" && dcodeca != null && cookie.charAt(0) != '=' && cookie.charAt(1) != '=' && cookie.charAt(2) != '=' ) {
-                buildings = dcodeca;
+
+            }
+            if (neededcookie === "buildings") {
+                if (cookie.startsWith("buildings=")) {
+                console.log(cookie);
+                if (cookie.charAt(9) == "=") {
+                    newcookie = cookie.replace("=", " ");
+                    newcookie.trim();
+                }
+                console.log(i);
+                console.log(newcookie);
+                let dcodeca = JSON.parse("[" + newcookie.substring("buildings".length) + "]");
+                console.log(newcookie);
+                console.log(dcodeca);
+                if (dcodeca != "undefined" && dcodeca != "NaN" && dcodeca != null && cookie.charAt(0) != '=' && cookie.charAt(1) != '=' && cookie.charAt(2) != '=' ) {
+                    buildings = dcodeca;
+                    return;
+                }
                 return;
+                }
             }
-            return;
-        }
         }
     }
 
@@ -135,7 +140,7 @@
         if (getcookies("score") != null) {
             $('.scorenum').text(getcookies("score"));
             score = getcookies("score"); // update score value to avoid re-calculating it in case of page refresh or back navigation.
-        } if (getcookies("buildings") != null) {
+        } if (getcookies() != null) {
             buildings = getcookies("buildings"); // update buildings value to avoid re-calculating it in case of page refresh or back navigation.
             console.log(buildings); 
             if (buildings != "undefined" && buildings != "NaN" && buildings != null) {
@@ -144,7 +149,7 @@
                 $('.cursor-cost').text("Cost: " + (10 * Math.pow(2, buildings[0])));
                 ccost = 10 * Math.pow(2, buildings[0]);
             }
-            buildings = [0,0,0,0,0];
+            //buildings = [0,0,0,0,0];
             console.log(buildings);
         } else {
             setcookies(score, buildings);
