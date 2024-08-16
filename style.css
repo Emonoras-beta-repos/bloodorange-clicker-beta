@@ -10,6 +10,24 @@
   border-radius: 5px;
   size: 50px;
 }
+.achivement_notifier {
+  padding: 10px;
+  margin: 10px;
+  cursor: pointer;
+  position: absolute;
+  top: 400px;
+  left: 500px;
+  font-size: large;
+}
+.achivement_notifier_bottom {
+  padding: 10px;
+  margin: 10px;
+  cursor: pointer;
+  position: absolute;
+  top: 420px;
+  left: 504px;
+  font-size: small;
+}
 .shop {
   position: absolute;
   top: -10px;
@@ -36,6 +54,12 @@
   width: 110px;
   height: 110px;
   top: 280px;
+}
+.farm {
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  left: 200px;
 }
 .btn-cfiuc {
   cursor: pointer;

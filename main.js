@@ -8,6 +8,8 @@ let tree_cost = 100;
 let tree_cost_decrease = 0.35;
 let shed_cost = 1000;
 let shed_cost_decrease = 0.45;
+let farm_cost = 10000;
+let farm_cost_decrease = 0.55;
 // extra variables
 let h3 = document.getElementsByClassName("scorenum");
 
@@ -71,6 +73,9 @@ if (buildings !== null && Array.isArray(buildings)) {
     shed_cost = 1000 * Math.pow(2, buildings[2]);
     $(".shed-owned").text("You Own: " + buildings[2]);
     $(".shed-cost").text("Cost: " + 1000 * Math.pow(2, buildings[2]));
+    farm_cost = 10000 * Math.pow(2, buildings[3]);
+    $(".farm-owned").text("You Own: " + buildings[3]);
+    $(".farm-cost").text("Cost: " + 10000 * Math.pow(2, buildings[3]));
   }
 } else {
   buildings = [0, 0, 0, 0, 0];
@@ -78,6 +83,12 @@ if (buildings !== null && Array.isArray(buildings)) {
   cursor_cost = 10 * Math.pow(2, buildings[0]);
   $(".cursor-owned").text("You Own: " + buildings[0]);
   $(".cursor-cost").text("Cost: " + 10 * Math.pow(2, buildings[0]));
+  tree_cost = 100 * Math.pow(2, buildings[1]);
+  $(".tree-owned").text("You Own: " + buildings[1]);
+  $(".tree-cost").text("Cost: " + 100 * Math.pow(2, buildings[1]));
+  farm_cost = 10000 * Math.pow(2, buildings[3]);
+  $(".farm-owned").text("You Own: " + buildings[3]);
+  $(".farm-cost").text("Cost: " + 10000 * Math.pow(2, buildings[3]));
 }
 
 async function scoreupdate() {
@@ -159,6 +170,27 @@ function purchase(building) {
       alert("Not enough points!");
     }
   }
+  if (building == "farm") {
+    if (score >= farm_cost) {
+      score -= farm_cost;
+      updatecounter();
+      console.log(buildings);
+      buildings.splice(3, 1, buildings[3] + 1);
+      console.log(buildings);
+      setcookies(score, buildings);
+      farm_cost = 10000 * Math.pow(2, buildings[3]);
+      if (farm_cost >= 100000000) {
+        farm_cost = farm_cost * farm_cost_decrease;
+        if (typeof farm_cost === "number" && !Number.isInteger(farm_cost)) {
+          farm_cost = Math.floor(farm_cost);
+        }
+      }
+      $(".farm-owned").text("You Own: " + buildings[3]);
+      $(".farm-cost").text("Cost: " + farm_cost);
+    } else {
+      alert("Not enough points!");
+    }
+  }
 }
 async function updatecounter() {
   let h3text = parseInt($(".scorenum").text());
@@ -183,6 +215,17 @@ async function updatecounter() {
     totshed = totshed * 10;
     let upgradebonus = 0;
     score += totshed;
+    score += upgradebonus;
+    $(".scorenum").text(score);
+    $(h3).addClass("scoreupd");
+    await sleep(51);
+    $(h3).removeClass("scoreupd");
+  }
+  if (buildings[3] > 0) {
+    let totalfarm = buildings[3];
+    totalfarm = totalfarm * 100;
+    let upgradebonus = 0;
+    score += totalfarm;
     score += upgradebonus;
     $(".scorenum").text(score);
     $(h3).addClass("scoreupd");

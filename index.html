@@ -7,30 +7,38 @@
     </head>
     <body>
         <main class="game">
-            <h3 class="scorenum">0</h3>
+          <h3 class="scorenum">0</h3>
           <button type="button" class="btn-cfc" onclick="scoreupdate()" title="THE BUTTON OF DOOM"></button>
+          <p class="achivement_notifier"></p>
+          <p class="achivement_notifier_bottom"></p>
         </main>
         <main class="shop">
             <div class="upgrades"></div>
             <br>
             <div class="buildings">
                 <div class="cursor">
-                    <button type="button" class="btn-cfiuc" onclick="purchase('cursor')" title="Increases currency gained per click"> Purchase a cursor</button>
+                    <button type="button" class="btn-cfiuc" onclick="purchase('cursor')" title="Congrats! You can click the button harder!"> Purchase a cursor</button>
                     <br style="line-height: 15px;"> a</br>
                     <p class="cursor-owned">You Own: 0</p>
                     <p class="cursor-cost">Cost: 10</p>
                 </div>
                 <div class="tree">
-                    <button type="button" class="btn-cfiuc" onclick="purchase('tree')" title="This is a tree. Or is it?">Purchase a tree</button>
+                    <button type="button" class="btn-cfiuc" onclick="purchase('tree')" title="Orange tree with oranges :O">Purchase a tree</button>
                     <br style="line-height: 15px;"> a</br>
                     <p class="tree-owned">You Own: 0</p>
                     <p class="tree-cost">Cost: 100</p>
                 </div>
                 <div class="shed">
-                    <button type="button" class="btn-cfiuc" onclick="purchase('shed')" title="I think this shed is magical">Purchase a shed</button>
+                    <button type="button" class="btn-cfiuc" onclick="purchase('shed')" title="Shed that can spawn boxes of oranges for no particular reason">Purchase a shed</button>
                     <br style="line-height: 15px;"> a</br>
                     <p class="shed-owned">You Own: 0</p>
                     <p class="shed-cost">Cost: 1000</p>
+                </div>
+                <div class="farm">
+                    <button type="button" class="btn-cfiuc" onclick="purchase('farm')" title="I had no idea you liked slave labor">Purchase a farm</button>
+                    <br style="line-height: 15px;"> a</br>
+                    <p class="farm-owned">You Own: 0</p>
+                    <p class="farm-cost">Cost: 10000</p>
                 </div>
             </div>
         </main>
