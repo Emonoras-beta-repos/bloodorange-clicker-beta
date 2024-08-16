@@ -1,107 +1,55 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Simple web game</title>
-        <meta charset="UTF-8">
-        <style>
-            .btn-cfc {
-                padding: 10px;
-                margin: 10px;
-                cursor: pointer;
-                position: absolute;
-                top: 250px;
-                left: 100px;
-                background-color: #ff821b;
-                border-color: black;
-                border-radius: 5px;
-                size: 50px;
-
-            }
-            html {
-                background-color: #e7700e;
-            }
-            .scorenum {
-                position: absolute;
-                top: -21px;
-                left: 0px;
-            }
-            .scoreupd {
-                animation: scoreupd 2s ;
-            }
-            @keyframes scoreupd {
-                0% { transform: scale(0);}
-                1% { transform: scale(0.01);}
-                2% { transform: scale(0.02);}
-                3% { transform: scale(0.03);}
-                4% { transform: scale(0.04);}
-                5% { transform: scale(0.05);}
-                6% { transform: scale(0.06);}
-                7% { transform: scale(0.07);}
-                8% { transform: scale(0.08);}
-                9% { transform: scale(0.09);}
-                10% { transform: scale(0.10);}
-                11% { transform: scale(0.11);}
-                12% { transform: scale(0.12);}
-                13% { transform: scale(0.13);}
-                14% { transform: scale(0.14);}
-                15% { transform: scale(0.15);}
-                16% { transform: scale(0.16);}
-                17% { transform: scale(0.17);}
-                18% { transform: scale(0.18);}
-                19% { transform: scale(0.19);}
-                20% { transform: scale(0.20);}
-                22% { transform: scale(0.22);}
-                24% { transform: scale(0.24);}
-                26% { transform: scale(0.26);}
-                28% { transform: scale(0.28);}
-                30% { transform: scale(0.30);}
-                32% { transform: scale(0.32);}
-                34% { transform: scale(0.34);}
-                36% { transform: scale(0.36);}
-                38% { transform: scale(0.38);}
-                40% { transform: scale(0.40);}
-                45% { transform: scale(0.45);}
-                50% { transform: scale(0.50);}
-                55% { transform: scale(0.55);}
-                60% { transform: scale(0.60);}
-                65% { transform: scale(0.65);}
-                70% { transform: scale(0.70);}
-                80% { transform: scale(0.80);}
-                90% { transform: scale(0.90);}
-                100% { transform: scale(1);}
-            }
-        </style>
+        <title>Simple website</title>
+        <meta charset="UTF-8", content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
         <main class="game">
-            <h3 class="scorenum">0</h3>
-          <button type="button" class="btn-cfc" onclick="scoreupdate()"></button>
+          <h3 class="scorenum">0</h3>
+          <button type="button" class="btn-cfc" onclick="scoreupdate()" title="THE BUTTON OF DOOM"></button>
+          <p class="achivement_notifier"></p>
+          <p class="achivement_notifier_bottom"></p>
+        </main>
+        <main class="shop">
+            <div class="upgrades"></div>
+            <br>
+            <div class="buildings">
+                <div class="cursor">
+                    <button type="button" class="btn-cfiuc" onclick="purchase('cursor')" title="Congrats! You can click the button harder!"> Purchase a cursor</button>
+                    <br style="line-height: 15px;"> a</br>
+                    <p class="cursor-owned">You Own: 0</p>
+                    <p class="cursor-cost">Cost: 10</p>
+                </div>
+                <div class="tree">
+                    <button type="button" class="btn-cfiuc" onclick="purchase('tree')" title="Orange tree with oranges :O">Purchase a tree</button>
+                    <br style="line-height: 15px;"> a</br>
+                    <p class="tree-owned">You Own: 0</p>
+                    <p class="tree-cost">Cost: 100</p>
+                </div>
+                <div class="shed">
+                    <button type="button" class="btn-cfiuc" onclick="purchase('shed')" title="Shed that can spawn boxes of oranges for no particular reason">Purchase a shed</button>
+                    <br style="line-height: 15px;"> a</br>
+                    <p class="shed-owned">You Own: 0</p>
+                    <p class="shed-cost">Cost: 1000</p>
+                </div>
+                <div class="farm">
+                    <button type="button" class="btn-cfiuc" onclick="purchase('farm')" title="I had no idea you liked slave labor">Purchase a farm</button>
+                    <br style="line-height: 15px;"> a</br>
+                    <p class="farm-owned">You Own: 0</p>
+                    <p class="farm-cost">Cost: 10000</p>
+                </div>
+                <div class="orange_orchard">
+                    <button type="button" class="btn-cfiuc" onclick="purchase('orange-orchard')" title="I do not condolne the use of unpaid human labor">Purchase an orange orchard</button>
+                    <br style="line-height: 15px;"> a</br>
+                    <p class="orange-orchard-owned">You Own: 0</p>
+                    <p class="orange-orchard-cost">Cost: 100000</p>
+
+                </div>
+            </div>
         </main>
     </body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
-    <script>
-        let score = 0;
-        function getcookies () {
-            var cookies = document.cookie.split(';');
-            var scoreCookie = cookies.find(c => c.trim().startsWith('score='));
-            return scoreCookie? parseInt(scoreCookie.split('=')[1]) : 0;
-        }
-        function setcookies (score) {
-            document.cookie ='score=' + score + '; path=/';
-        }
-        if (getcookies() != null) {
-            $('.scorenum').text(getcookies());
-            score = getcookies(); // update score value to avoid re-calculating it in case of page refresh or back navigation.
-        } else {
-            setcookies(score);
-        }
-
-        function scoreupdate () {
-            score++;
-            $('.scorenum').text(score);
-            $('.scorenum').addClass('scoreupd');
-            $('.scorenum').removeClass('scoreupd');
-            setcookies(score);
-        }
-    </script>
+    <script src="main.js"></script>
 </html>
