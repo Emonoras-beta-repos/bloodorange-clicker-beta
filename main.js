@@ -2,7 +2,10 @@
 let score = 0;
 let buildings = [0, 0, 0, 0, 0];
 // cost variables
-let ccost = 10;
+let cursor_cost = 10;
+let cursor_cost_decrease = 0.25;
+let tree_cost = 100;
+let tree_cost_decrease = 0.35;
 // extra variables
 let h3 = document.getElementsByClassName("scorenum");
 
@@ -59,12 +62,15 @@ if (buildings !== null && Array.isArray(buildings)) {
     console.log(buildings);
     $(".cursor-owned").text("You Own: " + buildings[0]);
     $(".cursor-cost").text("Cost: " + 10 * Math.pow(2, buildings[0]));
-    ccost = 10 * Math.pow(2, buildings[0]);
+    cursor_cost = 10 * Math.pow(2, buildings[0]);
+    tree_cost = 10 * Math.pow(2, buildings[1]);
+    $(".tree-owned").text("You Own: " + buildings[1]);
+    $(".tree-cost").text("Cost: " + 100 * Math.pow(2, buildings[1]));
   }
 } else {
   buildings = [0, 0, 0, 0, 0];
   setcookies(score, buildings);
-  ccost = 10 * Math.pow(2, buildings[0]);
+  cursor_cost = 10 * Math.pow(2, buildings[0]);
   $(".cursor-owned").text("You Own: " + buildings[0]);
   $(".cursor-cost").text("Cost: " + 10 * Math.pow(2, buildings[0]));
 }
@@ -86,16 +92,43 @@ async function scoreupdate() {
 
 function purchase(building) {
   if (building == "cursor") {
-    if (score >= ccost) {
-      score -= ccost;
-      scoreupdate();
+    if (score >= cursor_cost) {
+      score -= cursor_cost;
+      updatecounter();
       console.log(buildings);
       buildings.splice(0, 1, buildings[0] + 1);
       console.log(buildings);
       setcookies(score, buildings);
+      cursor_cost = 10 * Math.pow(2, buildings[0]);
+      if (cursor_cost >= 100000) {
+        cursor_cost = cursor_cost * cursor_cost_decrease;
+        if (typeof cursor_cost === "number" && !Number.isInteger(cursor_cost)) {
+          cursor_cost = Math.floor(cursor_cost);
+        }
+      }
       $(".cursor-owned").text("You Own: " + buildings[0]);
-      $(".cursor-cost").text("Cost: " + 10 * Math.pow(2, buildings[0]));
-      ccost = 10 * Math.pow(2, buildings[0]);
+      $(".cursor-cost").text("Cost: " + cursor_cost);
+    } else {
+      alert("Not enough points!");
+    }
+  }
+  if (building == "tree") {
+    if (score >= tree_cost) {
+      score -= tree_cost;
+      updatecounter();
+      console.log(buildings);
+      buildings.splice(1, 1, buildings[1] + 1);
+      console.log(buildings);
+      setcookies(score, buildings);
+      tree_cost = 100 * Math.pow(2, buildings[1]);
+      if (tree_cost >= 1000000) {
+        tree_cost = tree_cost * tree_cost_decrease;
+        if (typeof tree_cost === "number" && !Number.isInteger(tree_cost)) {
+          tree_cost = Math.floor(tree_cost);
+        }
+      }
+      $(".tree-owned").text("You Own: " + buildings[1]);
+      $(".tree-cost").text("Cost: " + tree_cost);
     } else {
       alert("Not enough points!");
     }
@@ -103,7 +136,17 @@ function purchase(building) {
 }
 async function updatecounter() {
   let h3text = parseInt($(".scorenum").text());
-  if (h3text < score) {
+  if (h3text < score || h3text > score) {
+    $(".scorenum").text(score);
+    $(h3).addClass("scoreupd");
+    await sleep(51);
+    $(h3).removeClass("scoreupd");
+  }
+  if (buildings[1] > 0) {
+    let tottree = buildings[1];
+    let upgradebonus = 0;
+    score += tottree;
+    score += upgradebonus;
     $(".scorenum").text(score);
     $(h3).addClass("scoreupd");
     await sleep(51);

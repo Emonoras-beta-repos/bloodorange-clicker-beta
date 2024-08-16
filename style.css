@@ -19,12 +19,17 @@
   position: absolute;
   top: 50px;
   left: 415px;
-  size: 90px;
 }
 .cursor {
   position: absolute;
-  width: 90px;
-  height: 90px;
+  width: 110px;
+  height: 110px;
+}
+.tree {
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  top: 140px;
 }
 .btn-cfiuc {
   cursor: pointer;
