@@ -31,6 +31,12 @@
   height: 110px;
   top: 140px;
 }
+.shed {
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  top: 280px;
+}
 .btn-cfiuc {
   cursor: pointer;
   position: absolute;

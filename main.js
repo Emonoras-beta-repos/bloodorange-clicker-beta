@@ -6,6 +6,8 @@ let cursor_cost = 10;
 let cursor_cost_decrease = 0.25;
 let tree_cost = 100;
 let tree_cost_decrease = 0.35;
+let shed_cost = 1000;
+let shed_cost_decrease = 0.45;
 // extra variables
 let h3 = document.getElementsByClassName("scorenum");
 
@@ -66,6 +68,9 @@ if (buildings !== null && Array.isArray(buildings)) {
     tree_cost = 10 * Math.pow(2, buildings[1]);
     $(".tree-owned").text("You Own: " + buildings[1]);
     $(".tree-cost").text("Cost: " + 100 * Math.pow(2, buildings[1]));
+    shed_cost = 1000 * Math.pow(2, buildings[2]);
+    $(".shed-owned").text("You Own: " + buildings[2]);
+    $(".shed-cost").text("Cost: " + 1000 * Math.pow(2, buildings[2]));
   }
 } else {
   buildings = [0, 0, 0, 0, 0];
@@ -133,6 +138,27 @@ function purchase(building) {
       alert("Not enough points!");
     }
   }
+  if (building == "shed") {
+    if (score >= shed_cost) {
+      score -= shed_cost;
+      updatecounter();
+      console.log(buildings);
+      buildings.splice(2, 1, buildings[2] + 1);
+      console.log(buildings);
+      setcookies(score, buildings);
+      shed_cost = 1000 * Math.pow(2, buildings[2]);
+      if (shed_cost >= 10000000) {
+        shed_cost = shed_cost * shed_cost_decrease;
+        if (typeof shed_cost === "number" && !Number.isInteger(shed_cost)) {
+          shed_cost = Math.floor(shed_cost);
+        }
+      }
+      $(".shed-owned").text("You Own: " + buildings[2]);
+      $(".shed-cost").text("Cost: " + shed_cost);
+    } else {
+      alert("Not enough points!");
+    }
+  }
 }
 async function updatecounter() {
   let h3text = parseInt($(".scorenum").text());
@@ -146,6 +172,17 @@ async function updatecounter() {
     let tottree = buildings[1];
     let upgradebonus = 0;
     score += tottree;
+    score += upgradebonus;
+    $(".scorenum").text(score);
+    $(h3).addClass("scoreupd");
+    await sleep(51);
+    $(h3).removeClass("scoreupd");
+  }
+  if (buildings[2] > 0) {
+    let totshed = buildings[2];
+    totshed = totshed * 10;
+    let upgradebonus = 0;
+    score += totshed;
     score += upgradebonus;
     $(".scorenum").text(score);
     $(h3).addClass("scoreupd");
