@@ -10,6 +10,8 @@ let shed_cost = 1000;
 let shed_cost_decrease = 0.45;
 let farm_cost = 10000;
 let farm_cost_decrease = 0.55;
+let orange_orchard_cost = 100000;
+let orange_orchard_cost_decrease = 0.65;
 // extra variables
 let h3 = document.getElementsByClassName("scorenum");
 
@@ -116,7 +118,13 @@ function purchase(building) {
       console.log(buildings);
       setcookies(score, buildings);
       cursor_cost = 10 * Math.pow(2, buildings[0]);
-      if (cursor_cost >= 100000) {
+      if (cursor_cost >= 1000) {
+        cursor_cost = cursor_cost / 2;
+        if (typeof cursor_cost === "number" && !Number.isInteger(cursor_cost)) {
+          cursor_cost = Math.floor(cursor_cost);
+        }
+      }
+      if (cursor_cost >= 10000) {
         cursor_cost = cursor_cost * cursor_cost_decrease;
         if (typeof cursor_cost === "number" && !Number.isInteger(cursor_cost)) {
           cursor_cost = Math.floor(cursor_cost);
@@ -137,7 +145,13 @@ function purchase(building) {
       console.log(buildings);
       setcookies(score, buildings);
       tree_cost = 100 * Math.pow(2, buildings[1]);
-      if (tree_cost >= 1000000) {
+      if (tree_cost >= 10000) {
+        tree_cost = tree_cost / 2;
+        if (typeof tree_cost === "number" && !Number.isInteger(tree_cost)) {
+          tree_cost = Math.floor(tree_cost);
+        }
+      }
+      if (tree_cost >= 100000) {
         tree_cost = tree_cost * tree_cost_decrease;
         if (typeof tree_cost === "number" && !Number.isInteger(tree_cost)) {
           tree_cost = Math.floor(tree_cost);
@@ -158,7 +172,13 @@ function purchase(building) {
       console.log(buildings);
       setcookies(score, buildings);
       shed_cost = 1000 * Math.pow(2, buildings[2]);
-      if (shed_cost >= 10000000) {
+      if (shed_cost >= 100000) {
+        shed_cost = shed_cost / 2;
+        if (typeof shed_cost === "number" && !Number.isInteger(shed_cost)) {
+          shed_cost = Math.floor(shed_cost);
+        }
+      }
+      if (shed_cost >= 1000000) {
         shed_cost = shed_cost * shed_cost_decrease;
         if (typeof shed_cost === "number" && !Number.isInteger(shed_cost)) {
           shed_cost = Math.floor(shed_cost);
@@ -179,7 +199,13 @@ function purchase(building) {
       console.log(buildings);
       setcookies(score, buildings);
       farm_cost = 10000 * Math.pow(2, buildings[3]);
-      if (farm_cost >= 100000000) {
+      if (farm_cost >= 1000000) {
+        farm_cost = farm_cost / 2;
+        if (typeof farm_cost === "number" && !Number.isInteger(farm_cost)) {
+          farm_cost = Math.floor(farm_cost);
+        }
+      }
+      if (farm_cost >= 10000000) {
         farm_cost = farm_cost * farm_cost_decrease;
         if (typeof farm_cost === "number" && !Number.isInteger(farm_cost)) {
           farm_cost = Math.floor(farm_cost);
@@ -189,6 +215,31 @@ function purchase(building) {
       $(".farm-cost").text("Cost: " + farm_cost);
     } else {
       alert("Not enough points!");
+    }
+  }
+  if (building == "orange orchard") {
+    if (score >= orange_cost) {
+      score -= orange_cost;
+      updatecounter();
+      console.log(buildings);
+      buildings.splice(4, 1, buildings[4] + 1);
+      console.log(buildings);
+      setcookies(score, buildings);
+      orange_cost = 100000 * Math.pow(2, buildings[4]);
+      if (orange_cost >= 1000000) {
+        orange_cost = orange_cost / 2;
+        if (typeof orange_cost === "number" && !Number.isInteger(orange_cost)) {
+          orange_cost = Math.floor(orange_cost);
+        }
+      }
+      if (orange_cost >= 10000000) {
+        orange_cost = orange_cost * orange_cost_decrease;
+        if (typeof orange_cost === "number" && !Number.isInteger(orange_cost)) {
+          orange_cost = Math.floor(orange_cost);
+        }
+      }
+      $(".orange-owned").text("You Own: " + buildings[4]);
+      $(".orange-cost").text("Cost: " + orange_cost);
     }
   }
 }
@@ -203,6 +254,10 @@ async function updatecounter() {
   if (buildings[1] > 0) {
     let tottree = buildings[1];
     let upgradebonus = 0;
+    if (buildings[1] > 10) {
+      let treebonus = tottree + upgradebonus + 5 * 2;
+      score += treebonus;
+    }
     score += tottree;
     score += upgradebonus;
     $(".scorenum").text(score);
@@ -214,6 +269,10 @@ async function updatecounter() {
     let totshed = buildings[2];
     totshed = totshed * 10;
     let upgradebonus = 0;
+    if (buildings[1] > 10) {
+      let shedbonus = totshed + upgradebonus + 5 * 2;
+      score += shedbonus;
+    }
     score += totshed;
     score += upgradebonus;
     $(".scorenum").text(score);
@@ -225,7 +284,26 @@ async function updatecounter() {
     let totalfarm = buildings[3];
     totalfarm = totalfarm * 100;
     let upgradebonus = 0;
+    if (buildings[1] > 10) {
+      let farmbonus = totfarm + upgradebonus + 5 * 2;
+      score += farmbonus;
+    }
     score += totalfarm;
+    score += upgradebonus;
+    $(".scorenum").text(score);
+    $(h3).addClass("scoreupd");
+    await sleep(51);
+    $(h3).removeClass("scoreupd");
+  }
+  if (buildings[4] > 0) {
+    let totalorange = buildings[4];
+    totalorange = totalorange * 1000;
+    let upgradebonus = 0;
+    if (buildings[1] > 10) {
+      let orchardbonus = totorange + upgradebonus + 5 * 2;
+      score += orchardbonus;
+    }
+    score += totalorange;
     score += upgradebonus;
     $(".scorenum").text(score);
     $(h3).addClass("scoreupd");

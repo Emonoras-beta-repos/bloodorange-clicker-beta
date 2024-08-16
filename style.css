@@ -40,26 +40,33 @@
 }
 .cursor {
   position: absolute;
-  width: 110px;
-  height: 110px;
+  width: 120px;
+  height: 120px;
 }
 .tree {
   position: absolute;
-  width: 110px;
-  height: 110px;
+  width: 118px;
+  height: 118px;
   top: 140px;
 }
 .shed {
   position: absolute;
-  width: 110px;
-  height: 110px;
+  width: 120px;
+  height: 120px;
   top: 280px;
 }
 .farm {
   position: absolute;
-  width: 110px;
-  height: 110px;
+  width: 120px;
+  height: 120px;
   left: 200px;
+}
+.orange_orchard {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  left: 200px;
+  top: 140px;
 }
 .btn-cfiuc {
   cursor: pointer;
