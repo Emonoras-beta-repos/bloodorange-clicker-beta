@@ -14,7 +14,9 @@ let orange_orchard_cost = 100000;
 let orange_orchard_cost_decrease = 0.65;
 // extra variables
 let h3 = document.getElementsByClassName("scorenum");
-
+let cost_list = ["cursor_cost", "tree_cost", "shed_cost", "farm_cost", "orange_orchard_cost"];
+let building_cost = ["cursor-cost", "tree-cost", "shed-cost", "farm-cost", "orange-orchard-cost"];
+let building_owned = ["cursor-owned", "tree-owned", "shed-owned", "farm-owned", "orange-orchard-owned"];
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -66,6 +68,28 @@ if (buildings !== null && Array.isArray(buildings)) {
     buildings[0] !== "NaN"
   ) {
     console.log(buildings);
+    for (var i = 0; i++, i <= 4;) {
+      let costaddon;
+      let costaddonupdated = false;
+      while (costaddonupdated == false) {
+        let building = i;
+        if (building > 1) {
+          if (building == 2) {
+            costaddon = 100;
+          }
+          if (building == 3) {
+            costaddon = 1000;
+          }
+          costaddon = 10000;
+        } else {
+          costaddon = 10;
+        }
+        costaddonupdated = true;
+      }
+      $(building_owned[i]).text("You Own: " + buildings[i]);
+      $(building_cost[i]).text("Cost: " + costaddon * Math.pow(2, buildings[i]));
+    }
+    /*
     $(".cursor-owned").text("You Own: " + buildings[0]);
     $(".cursor-cost").text("Cost: " + 10 * Math.pow(2, buildings[0]));
     cursor_cost = 10 * Math.pow(2, buildings[0]);
@@ -78,6 +102,7 @@ if (buildings !== null && Array.isArray(buildings)) {
     farm_cost = 10000 * Math.pow(2, buildings[3]);
     $(".farm-owned").text("You Own: " + buildings[3]);
     $(".farm-cost").text("Cost: " + 10000 * Math.pow(2, buildings[3]));
+    */
   }
 } else {
   buildings = [0, 0, 0, 0, 0];
