@@ -88,33 +88,23 @@ if (buildings !== null && Array.isArray(buildings)) {
     console.log(buildings);
     $(document).ready(function () {
       for (var i = 0; i < 5; i++) {
-        let costaddon;
 
-        if (i == 2) {
-          costaddon = 100;
-        } else if (i == 3) {
-          costaddon = 1000;
-        } else if (i == 4) {
-          costaddon = 10000;
-        } else {
-          costaddon = 10;
-        }
-
+        // Cost Variable factoring
         cursor_cost = 10 * Math.pow(2, buildings[0]);
         tree_cost = 100 * Math.pow(2, buildings[1]);
         shed_cost = 1000 * Math.pow(2, buildings[2]);
         farm_cost = 10000 * Math.pow(2, buildings[3]);
         orange_orchard_cost = 100000 * Math.pow(2, buildings[4]);
+
+        // Actual update function
         console.log(building_owned[i]);
         console.log(building_cost[i]);
         $(building_owned[i]).text("You Own: " + buildings[i]);
         $(building_cost[i]).text(
-          "Cost: " + costaddon * Math.pow(2, buildings[i])
+          "Cost: " + cost_list[i]
         );
 
-        let test = $(building_owned[i]);
-        console.log(test);
-
+        // Factor in lost currency gain during loading sequence
         updatecounter();
       }
     });
@@ -367,6 +357,7 @@ async function updatecounter() {
     await sleep(51);
     $(h3).removeClass("scoreupd");
   }
+  
   setcookies(score, buildings);
 }
 setInterval(updatecounter, 1000);
