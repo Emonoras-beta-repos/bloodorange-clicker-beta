@@ -99,8 +99,8 @@ if (buildings !== null && Array.isArray(buildings)) {
         // Actual update function
         console.log(building_owned[i]);
         console.log(building_cost[i]);
-        $(building_owned[i]).text("You Own: " + buildings[i]);
-        $(building_cost[i]).text(
+        $('"' + building_owned[i] + '"').text("You Own: " + buildings[i]);
+        $('"' + building_cost[i] + '"').text(
           "Cost: " + cost_list[i]
         );
 
