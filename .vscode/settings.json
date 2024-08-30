@@ -1,3 +1,12 @@
 {
-  "cSpell.enableFiletypes": ["!html"]
+  "cSpell.enableFiletypes": ["!html"],
+  "cSpell.words": [
+    "dcodeca",
+    "getcookies",
+    "neededcookie",
+    "newcookie",
+    "scorecookie",
+    "scorenum",
+    "setcookies"
+  ]
 }
