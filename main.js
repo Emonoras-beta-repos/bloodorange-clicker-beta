@@ -108,6 +108,7 @@ if (buildings !== null && Array.isArray(buildings)) {
         updatecounter();
       }
     });
+    //TODO: Remove this shit
     /*
     $(".cursor-owned").text("You Own: " + buildings[0]);
     $(".cursor-cost").text("Cost: " + 10 * Math.pow(2, buildings[0]));
