@@ -14,13 +14,6 @@ let orange_orchard_cost = 100000;
 let orange_orchard_cost_decrease = 0.65;
 // extra variables
 let h3 = document.getElementsByClassName("scorenum");
-let cost_list = [
-  "cursor_cost",
-  "tree_cost",
-  "shed_cost",
-  "farm_cost",
-  "orange_orchard_cost",
-];
 let building_cost = [
   "cursor-cost",
   "tree-cost",
@@ -96,11 +89,19 @@ if (buildings !== null && Array.isArray(buildings)) {
         farm_cost = 10000 * Math.pow(2, buildings[3]);
         orange_orchard_cost = 100000 * Math.pow(2, buildings[4]);
 
+        let cost_list = [
+          cursor_cost,
+          tree_cost,
+          shed_cost,
+          farm_cost,
+          orange_orchard_cost,
+        ];
+
         // Actual update function
         console.log(building_owned[i]);
         console.log(building_cost[i]);
-        $('"' + "." + building_owned[i] + '"').text("You Own: " + buildings[i]);
-        $('"' + "." + building_cost[i] + '"').text(
+        $("." + building_owned[i]).text("You Own: " + buildings[i]);
+        $("." + building_cost[i]).text(
           "Cost: " + cost_list[i]
         );
 
@@ -108,24 +109,6 @@ if (buildings !== null && Array.isArray(buildings)) {
         updatecounter();
       }
     });
-    //TODO: Remove this shit
-    /*
-    $(".cursor-owned").text("You Own: " + buildings[0]);
-    $(".cursor-cost").text("Cost: " + 10 * Math.pow(2, buildings[0]));
-    cursor_cost = 10 * Math.pow(2, buildings[0]);
-    tree_cost = 10 * Math.pow(2, buildings[1]);
-    $(".tree-owned").text("You Own: " + buildings[1]);
-    $(".tree-cost").text("Cost: " + 100 * Math.pow(2, buildings[1]));
-    shed_cost = 1000 * Math.pow(2, buildings[2]);
-    $(".shed-owned").text("You Own: " + buildings[2]);
-    $(".shed-cost").text("Cost: " + 1000 * Math.pow(2, buildings[2]));
-    farm_cost = 10000 * Math.pow(2, buildings[3]);
-    $(".farm-owned").text("You Own: " + buildings[3]);
-    $(".farm-cost").text("Cost: " + 10000 * Math.pow(2, buildings[3]));
-    orange_orchard_cost = 100000 * Math.pow(2, buildings[4]);
-    $(".orange-orchard-owned").text("You Own: " + buildings[4]);
-    $(".orange-orchard-cost").text("Cost: " + 100000 * Math.pow(2, buildings[4]));
-    */
   }
 } else {
   buildings = [0, 0, 0, 0, 0];
