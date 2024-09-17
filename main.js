@@ -300,7 +300,7 @@ async function updatecounter() {
     let totshed = buildings[2];
     totshed = totshed * 10;
     let upgradebonus = 0;
-    if (buildings[1] > 10) {
+    if (buildings[2] > 10) {
       let shedbonus = totshed + upgradebonus + 5 * 2;
       score += shedbonus;
     }
@@ -315,7 +315,7 @@ async function updatecounter() {
     let totalfarm = buildings[3];
     totalfarm = totalfarm * 100;
     let upgradebonus = 0;
-    if (buildings[1] > 10) {
+    if (buildings[3] > 10) {
       let farmbonus = totfarm + upgradebonus + 5 * 2;
       score += farmbonus;
     }
@@ -330,7 +330,7 @@ async function updatecounter() {
     let totalorange = buildings[4];
     totalorange = totalorange * 1000;
     let upgradebonus = 0;
-    if (buildings[1] > 10) {
+    if (buildings[4] > 10) {
       let orchardbonus = totorange + upgradebonus + 5 * 2;
       score += orchardbonus;
     }
