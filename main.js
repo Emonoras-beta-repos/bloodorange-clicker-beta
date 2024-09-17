@@ -14,7 +14,20 @@ let orange_orchard_cost = 100000;
 let orange_orchard_cost_decrease = 0.65;
 // extra variables
 let h3 = document.getElementsByClassName("scorenum");
-
+let building_cost = [
+  "cursor-cost",
+  "tree-cost",
+  "shed-cost",
+  "farm-cost",
+  "orange-orchard-cost",
+];
+let building_owned = [
+  "cursor-owned",
+  "tree-owned",
+  "shed-owned",
+  "farm-owned",
+  "orange-orchard-owned",
+];
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -43,12 +56,12 @@ function getcookies(neededcookie) {
 
 function setcookies(score, buildings) {
   let scorecookie = (document.cookie = "score=" + score + "; path=/");
-  console.log(score);
-  console.log(buildings);
+  //console.log(score);
+  //console.log(buildings);
   let buildingcookie = (document.cookie =
     "buildings=" + JSON.stringify(buildings) + "; path=/");
-  console.log(buildingcookie);
-  console.log(scorecookie);
+  //console.log(buildingcookie);
+  //console.log(scorecookie);
 }
 
 // load cookies on page load and update score value accordingly.
@@ -66,18 +79,36 @@ if (buildings !== null && Array.isArray(buildings)) {
     buildings[0] !== "NaN"
   ) {
     console.log(buildings);
-    $(".cursor-owned").text("You Own: " + buildings[0]);
-    $(".cursor-cost").text("Cost: " + 10 * Math.pow(2, buildings[0]));
-    cursor_cost = 10 * Math.pow(2, buildings[0]);
-    tree_cost = 10 * Math.pow(2, buildings[1]);
-    $(".tree-owned").text("You Own: " + buildings[1]);
-    $(".tree-cost").text("Cost: " + 100 * Math.pow(2, buildings[1]));
-    shed_cost = 1000 * Math.pow(2, buildings[2]);
-    $(".shed-owned").text("You Own: " + buildings[2]);
-    $(".shed-cost").text("Cost: " + 1000 * Math.pow(2, buildings[2]));
-    farm_cost = 10000 * Math.pow(2, buildings[3]);
-    $(".farm-owned").text("You Own: " + buildings[3]);
-    $(".farm-cost").text("Cost: " + 10000 * Math.pow(2, buildings[3]));
+    $(document).ready(function () {
+      for (var i = 0; i < 5; i++) {
+
+        // Cost Variable factoring
+        cursor_cost = 10 * Math.pow(2, buildings[0]);
+        tree_cost = 100 * Math.pow(2, buildings[1]);
+        shed_cost = 1000 * Math.pow(2, buildings[2]);
+        farm_cost = 10000 * Math.pow(2, buildings[3]);
+        orange_orchard_cost = 100000 * Math.pow(2, buildings[4]);
+
+        let cost_list = [
+          cursor_cost,
+          tree_cost,
+          shed_cost,
+          farm_cost,
+          orange_orchard_cost,
+        ];
+
+        // Actual update function
+        console.log(building_owned[i]);
+        console.log(building_cost[i]);
+        $("." + building_owned[i]).text("You Own: " + buildings[i]);
+        $("." + building_cost[i]).text(
+          "Cost: " + cost_list[i]
+        );
+
+        // Factor in lost currency gain during loading sequence
+        updatecounter();
+      }
+    });
   }
 } else {
   buildings = [0, 0, 0, 0, 0];
@@ -310,6 +341,7 @@ async function updatecounter() {
     await sleep(51);
     $(h3).removeClass("scoreupd");
   }
+  
   setcookies(score, buildings);
 }
 setInterval(updatecounter, 1000);

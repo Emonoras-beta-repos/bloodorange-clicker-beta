@@ -1,6 +1,7 @@
- [![pages-build-deployment](https://github.com/Existence-dev/simple-webgame/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Existence-dev/simple-webgame/actions/workflows/pages/pages-build-deployment)
- ![GitHub top language](https://img.shields.io/github/languages/count/Emonora/bloodorange-clicker)
- ![GitHub commit activity](https://img.shields.io/github/commit-activity/t/Emonora/bloodorange-clicker)
+
+[![pages-build-deployment](https://github.com/Existence-dev/simple-webgame/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Existence-dev/simple-webgame/actions/workflows/pages/pages-build-deployment)
+![GitHub top language](https://img.shields.io/github/languages/count/Emonora/bloodorange-clicker)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/t/Emonora/bloodorange-clicker)
 
 A simple web based game that involves clicking. I have other projects that I'm working on all of which are private, but I will still respond to issues and fix bugs as they are discovered.
 
@@ -20,10 +21,9 @@ Addtion of 10 new buildings (Featureless most likely) [V0.6] - **Not Yet started
 
 Creation of upgrades and features for all current buildings [V0.7] - **Not Yet started**
 
-Creation of last and final buildings, and prestige system [V0.8] - **Not Yet started** 
+Creation of last and final buildings, and prestige system [V0.8] - **Not Yet started**
 
 Creation of all required upgrades and functions, a small UI revamp, and improvements to old systems [V0.9] - **Not Yet started**
-
 
 Offical Version 1 (Bug fixes, new features, etc.) [V1.0] - **Not Yet started**
 
