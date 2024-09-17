@@ -49,6 +49,30 @@
                 </div>
             </div>
         </main>
+        <main class="save">
+            <div class="save-container">
+                <button type="button" class="btn-cfstm" onclick="opensavemenu()" title="Save the damn game already" id="diagbtn">Save the game</button>
+            </div>
+
+        </main>
+        <dialog>
+            <p>Would you like to save the game?</p>
+            <button class="btn-yts">Yes</button>
+            <button class="btn-nts">No</button>
+        </dialog>
+        <dialog>
+            <p>Would you like to import a save code?</p>
+            <button class="btn-isy">Yes</button>
+            <button class="btn-isn">No</button>
+        </dialog>
+        <dialog>
+            <p>Your save code is:</p>
+            <p id="savecode"></p>
+        </dialog>
+        <dialog>
+            <p>Import your save code below:</p>
+            <input value="save code" name="save-code"/>
+        </dialog>
     </body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
     <script src="main.js"></script>
