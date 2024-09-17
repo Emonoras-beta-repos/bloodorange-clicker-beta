@@ -100,12 +100,7 @@ html {
     transform: scale(1);
   }
 }
-/*Add autoajusting css here */
-/* @media screen and (max-width: 480px) 
-{
-Styling for smaller windows goes here.
-}
-*/
+
 br {
   color: #ff821b;
 }
