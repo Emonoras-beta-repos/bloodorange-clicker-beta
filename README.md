@@ -8,10 +8,11 @@ Game Road Map:
 
 Creation of Idle Currency Creation and a few starting structures [V0.2] - **Released**
 
-Creation of Achivement, and upgrade system [V0.3] - **Development Beginning Soon**
+Creation of a save transfer system [V0.3] - **Not Yet started**
 
-Graphics, and UI revamp [V0.4] - **Not Yet started**
-Creation of a save transfer system [V0.5] - **Not Yet started**
+Creation of Achivement, and upgrade system [V0.4] - **Development Beginning Soon**
+
+Graphics, and UI revamp [V0.5] - **Not Yet started**
 
 Addtion of 10 new buildings (Featureless most likely) [V0.6] - **Not Yet started**
 
