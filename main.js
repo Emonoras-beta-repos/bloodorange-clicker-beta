@@ -225,158 +225,147 @@ async function scoreupdate() {
 }
 
 function purchase(building) {
-  if (building == "cursor") {
-    if (score >= cursor_cost) {
+  if (building == "cursor" && score >= cursor_cost) {
+    score -= cursor_cost;
+    updatecounter();
+    console.log(buildings);
+    buildings.splice(0, 1, buildings[0] + 1);
+    console.log(buildings);
+    setcookies(score, buildings);
+    cursor_cost = 10 * Math.pow(2, buildings[0]);
 
-      score -= cursor_cost;
-      updatecounter();
-      console.log(buildings);
-      buildings.splice(0, 1, buildings[0] + 1);
-      console.log(buildings);
-      setcookies(score, buildings);
-      cursor_cost = 10 * Math.pow(2, buildings[0]);
-
-      if (cursor_cost >= 1000) {
-        cursor_cost = cursor_cost / 2;
-        if (typeof cursor_cost === "number" && !Number.isInteger(cursor_cost)) {
-          cursor_cost = Math.floor(cursor_cost);
-        }
+    if (cursor_cost >= 1000) {
+      cursor_cost = cursor_cost / 2;
+      if (typeof cursor_cost === "number" && !Number.isInteger(cursor_cost)) {
+        cursor_cost = Math.floor(cursor_cost);
       }
-
-      if (cursor_cost >= 10000) {
-        cursor_cost = cursor_cost * cursor_cost_decrease;
-        if (typeof cursor_cost === "number" && !Number.isInteger(cursor_cost)) {
-          cursor_cost = Math.floor(cursor_cost);
-        }
-      }
-
-      $(".cursor-owned").text("You Own: " + buildings[0]);
-      $(".cursor-cost").text("Cost: " + cursor_cost);
-    } else {
-      alert("Not enough points!");
     }
+
+    if (cursor_cost >= 10000) {
+      cursor_cost = cursor_cost * cursor_cost_decrease;
+      if (typeof cursor_cost === "number" && !Number.isInteger(cursor_cost)) {
+        cursor_cost = Math.floor(cursor_cost);
+      }
+    }
+
+    $(".cursor-owned").text("You Own: " + buildings[0]);
+    $(".cursor-cost").text("Cost: " + cursor_cost);
+  } else {
+    alert("not enough score")
   }
-  if (building == "tree") {
-    if (score >= tree_cost) {
 
-      score -= tree_cost;
-      updatecounter();
-      console.log(buildings);
-      buildings.splice(1, 1, buildings[1] + 1);
-      console.log(buildings);
-      setcookies(score, buildings);
-      tree_cost = 100 * Math.pow(2, buildings[1]);
+  if (building == "tree" && score >= tree_cost) {
+    score -= tree_cost;
+    updatecounter();
+    console.log(buildings);
+    buildings.splice(1, 1, buildings[1] + 1);
+    console.log(buildings);
+    setcookies(score, buildings);
+    tree_cost = 100 * Math.pow(2, buildings[1]);
 
-      if (tree_cost >= 10000) {
-        tree_cost = tree_cost / 2;
-        if (typeof tree_cost === "number" && !Number.isInteger(tree_cost)) {
-          tree_cost = Math.floor(tree_cost);
-        }
+    if (tree_cost >= 10000) {
+      tree_cost = tree_cost / 2;
+      if (typeof tree_cost === "number" && !Number.isInteger(tree_cost)) {
+        tree_cost = Math.floor(tree_cost);
       }
-
-      if (tree_cost >= 100000) {
-        tree_cost = tree_cost * tree_cost_decrease;
-        if (typeof tree_cost === "number" && !Number.isInteger(tree_cost)) {
-          tree_cost = Math.floor(tree_cost);
-        }
-      }
-
-      $(".tree-owned").text("You Own: " + buildings[1]);
-      $(".tree-cost").text("Cost: " + tree_cost);
-    } else {
-      alert("Not enough points!");
     }
+
+    if (tree_cost >= 100000) {
+      tree_cost = tree_cost * tree_cost_decrease;
+      if (typeof tree_cost === "number" && !Number.isInteger(tree_cost)) {
+        tree_cost = Math.floor(tree_cost);
+      }
+    }
+
+    $(".tree-owned").text("You Own: " + buildings[1]);
+    $(".tree-cost").text("Cost: " + tree_cost);
+  } else {
+    alert("Not enough points!");
   }
-  if (building == "shed") {
-    if (score >= shed_cost) {
 
-      score -= shed_cost;
-      updatecounter();
-      console.log(buildings);
-      buildings.splice(2, 1, buildings[2] + 1);
-      console.log(buildings);
-      setcookies(score, buildings);
-      shed_cost = 1000 * Math.pow(2, buildings[2]);
+  if (building == "shed" && score >= shed_cost) {
+    score -= shed_cost;
+    updatecounter();
+    console.log(buildings);
+    buildings.splice(2, 1, buildings[2] + 1);
+    console.log(buildings);
+    setcookies(score, buildings);
+    shed_cost = 1000 * Math.pow(2, buildings[2]);
 
-      if (shed_cost >= 100000) {
-        shed_cost = shed_cost / 2;
-        if (typeof shed_cost === "number" && !Number.isInteger(shed_cost)) {
-          shed_cost = Math.floor(shed_cost);
-        }
+    if (shed_cost >= 100000) {
+      shed_cost = shed_cost / 2;
+      if (typeof shed_cost === "number" && !Number.isInteger(shed_cost)) {
+        shed_cost = Math.floor(shed_cost);
       }
-
-      if (shed_cost >= 1000000) {
-        shed_cost = shed_cost * shed_cost_decrease;
-        if (typeof shed_cost === "number" && !Number.isInteger(shed_cost)) {
-          shed_cost = Math.floor(shed_cost);
-        }
-      }
-
-      $(".shed-owned").text("You Own: " + buildings[2]);
-      $(".shed-cost").text("Cost: " + shed_cost);
-    } else {
-      alert("Not enough points!");
     }
+
+    if (shed_cost >= 1000000) {
+      shed_cost = shed_cost * shed_cost_decrease;
+      if (typeof shed_cost === "number" && !Number.isInteger(shed_cost)) {
+        shed_cost = Math.floor(shed_cost);
+      }
+    }
+
+    $(".shed-owned").text("You Own: " + buildings[2]);
+    $(".shed-cost").text("Cost: " + shed_cost);
+  } else {
+    alert("Not enough points!");
   }
-  if (building == "farm") {
-    if (score >= farm_cost) {
+  if (building == "farm" && score >= farm_cost) {
+    score -= farm_cost;
+    updatecounter();
+    console.log(buildings);
+    buildings.splice(3, 1, buildings[3] + 1);
+    console.log(buildings);
+    setcookies(score, buildings);
+    farm_cost = 10000 * Math.pow(2, buildings[3]);
 
-      score -= farm_cost;
-      updatecounter();
-      console.log(buildings);
-      buildings.splice(3, 1, buildings[3] + 1);
-      console.log(buildings);
-      setcookies(score, buildings);
-      farm_cost = 10000 * Math.pow(2, buildings[3]);
-
-      if (farm_cost >= 1000000) {
-        farm_cost = farm_cost / 2;
-        if (typeof farm_cost === "number" && !Number.isInteger(farm_cost)) {
-          farm_cost = Math.floor(farm_cost);
-        }
+    if (farm_cost >= 1000000) {
+      farm_cost = farm_cost / 2;
+      if (typeof farm_cost === "number" && !Number.isInteger(farm_cost)) {
+        farm_cost = Math.floor(farm_cost);
       }
-
-      if (farm_cost >= 10000000) {
-        farm_cost = farm_cost * farm_cost_decrease;
-        if (typeof farm_cost === "number" && !Number.isInteger(farm_cost)) {
-          farm_cost = Math.floor(farm_cost);
-        }
-      }
-
-      $(".farm-owned").text("You Own: " + buildings[3]);
-      $(".farm-cost").text("Cost: " + farm_cost);
-    } else {
-      alert("Not enough points!");
     }
+
+    if (farm_cost >= 10000000) {
+      farm_cost = farm_cost * farm_cost_decrease;
+      if (typeof farm_cost === "number" && !Number.isInteger(farm_cost)) {
+        farm_cost = Math.floor(farm_cost);
+      }
+    }
+
+    $(".farm-owned").text("You Own: " + buildings[3]);
+    $(".farm-cost").text("Cost: " + farm_cost);
+  } else {
+    alert("Not enough points!");
   }
-  if (building == "orange orchard") {
-    if (score >= orange_cost) {
+  if (building == "orange orchard" && score >= orange_cost) {
+    score -= orange_cost;
+    updatecounter();
+    console.log(buildings);
+    buildings.splice(4, 1, buildings[4] + 1);
+    console.log(buildings);
+    setcookies(score, buildings);
+    orange_cost = 100000 * Math.pow(2, buildings[4]);
 
-      score -= orange_cost;
-      updatecounter();
-      console.log(buildings);
-      buildings.splice(4, 1, buildings[4] + 1);
-      console.log(buildings);
-      setcookies(score, buildings);
-      orange_cost = 100000 * Math.pow(2, buildings[4]);
-
-      if (orange_cost >= 1000000) {
-        orange_cost = orange_cost / 2;
-        if (typeof orange_cost === "number" && !Number.isInteger(orange_cost)) {
-          orange_cost = Math.floor(orange_cost);
-        }
+    if (orange_cost >= 1000000) {
+      orange_cost = orange_cost / 2;
+      if (typeof orange_cost === "number" && !Number.isInteger(orange_cost)) {
+        orange_cost = Math.floor(orange_cost);
       }
-
-      if (orange_cost >= 10000000) {
-        orange_cost = orange_cost * orange_cost_decrease;
-        if (typeof orange_cost === "number" && !Number.isInteger(orange_cost)) {
-          orange_cost = Math.floor(orange_cost);
-        }
-      }
-
-      $(".orange-owned").text("You Own: " + buildings[4]);
-      $(".orange-cost").text("Cost: " + orange_cost);
     }
+
+    if (orange_cost >= 10000000) {
+      orange_cost = orange_cost * orange_cost_decrease;
+      if (typeof orange_cost === "number" && !Number.isInteger(orange_cost)) {
+        orange_cost = Math.floor(orange_cost);
+      }
+    }
+
+    $(".orange-owned").text("You Own: " + buildings[4]);
+    $(".orange-cost").text("Cost: " + orange_cost);
+  } else {
+    alert("Not enough points")
   }
 }
 
