@@ -55,23 +55,23 @@
             </div>
 
         </main>
-        <dialog>
+        <dialog id="savemenu">
             <p>Would you like to save the game?</p>
-            <button class="btn-yts">Yes</button>
+            <button class="btn-yts" onclick="generatesavecode()">Yes</button>
             <button class="btn-nts">No</button>
         </dialog>
         <dialog>
             <p>Would you like to import a save code?</p>
-            <button class="btn-isy">Yes</button>
+            <button class="btn-isy" onclick="opensavemenus('import-save-code')">Yes</button>
             <button class="btn-isn">No</button>
         </dialog>
-        <dialog>
+        <dialog id="save-code-made">
             <p>Your save code is:</p>
             <p id="savecode"></p>
         </dialog>
-        <dialog>
+        <dialog id="import-save-code">
             <p>Import your save code below:</p>
-            <input value="save code" name="save-code"/>
+            <input value="save code" name="save-code" id="imported-save-code"/>
         </dialog>
     </body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"></script>

@@ -32,6 +32,8 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+/* Cookie functions (import, and export) */
+
 function getcookies(neededcookie) {
   let cookies = document.cookie.split(";");
   for (let i = 0; i < cookies.length; i++) {
@@ -64,7 +66,8 @@ function setcookies(score, buildings) {
   //console.log(scorecookie);
 }
 
-// load cookies on page load and update score value accordingly.
+/* Load cookie values on page (re)load */
+
 if (getcookies("score") != null) {
   $(".scorenum").text(getcookies("score"));
   score = getcookies("score"); // update score value to avoid re-calculating it in case of page refresh or back navigation.
@@ -134,10 +137,78 @@ if (buildings !== null && Array.isArray(buildings)) {
   }
 }
 
-function opensavemenu() {
-  const diag = document.getElementById("savemenu");
+/* 
+Save Menu functions
+*/
+
+function opensavemenus(menu) {
+  const diag = document.getElementById(menu);
   diag.showModal();
 }
+
+function generatesavecode() {
+  const diag = document.getElementById("save-code-made");
+  let savecodetxt = document.getElementById("savecode");
+  let savecode;
+  if (buildings[0] > 9 || buildings[1] > 9 || buildings[2] > 9 || buildings[3] > 9 || buildings[4] > 9) {
+    savecode = [buildings[0], ".", buildings[1], ".", buildings[2], ".", buildings[3], ".", buildings[4], ",", score];
+  } else {
+    savecode = [buildings, ",",score];
+  }
+  
+  savecodetxt.innerHTML = savecode;
+  diag.showModal();
+}
+
+function importsavecode() {
+  const input = document.getElementById("imported-save-code");
+  const inputvalue = input;
+  let array;
+  let savecodetoimport = inputvalue;
+
+  if (savecodetoimport != null) {
+    let splitcode = savecodetoimport.split(",");
+    let buildings_array = splitcode[0];
+
+    if (buildings_array.includes(".")) {
+      let buildingsplitcode = buildings_array.split(".");
+      let splitedcode = buildingsplitcode;
+      let strtonum = num => Number(num);
+      array = Array.from(String(splitedcode), strtonum);
+    } else {
+      let strtonum = num => Number(num);
+      array = Array.from(String(buildings_array), strtonum);
+    }
+
+    for (var i = 0; i < 6; i++) {
+      buildings[i] = array[i]
+    }
+
+    for (var i = 0; i < 5; i++) {
+      // Cost Variable factoring
+      cursor_cost = 10 * Math.pow(2, buildings[0]);
+      tree_cost = 100 * Math.pow(2, buildings[1]);
+      shed_cost = 1000 * Math.pow(2, buildings[2]);
+      farm_cost = 10000 * Math.pow(2, buildings[3]);
+      orange_orchard_cost = 100000 * Math.pow(2, buildings[4]);
+  
+      let cost_list = [
+        cursor_cost,
+        tree_cost,
+        shed_cost,
+        farm_cost,
+        orange_orchard_cost,
+      ];
+  
+      $("." + building_owned[i]).text("You Own: " + buildings[i]);
+      $("." + building_cost[i]).text(
+          "Cost: " + cost_list[i]
+      );
+    }
+  }
+}
+
+/* Other Utility Functions (score, update GUI, etc.)*/
 
 async function scoreupdate() {
   score++;
