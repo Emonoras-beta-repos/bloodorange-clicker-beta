@@ -170,14 +170,12 @@ function importsavecode() {
   if (savecodetoimport != null) {
     let splitcode = savecodetoimport.split(",");
     let buildings_array = splitcode[0];
-
+    let strtonum = num => Number(num);
     if (buildings_array.includes(".")) {
       let buildingsplitcode = buildings_array.split(".");
       let splitedcode = buildingsplitcode;
-      let strtonum = num => Number(num);
       array = Array.from(String(splitedcode), strtonum);
     } else {
-      let strtonum = num => Number(num);
       array = Array.from(String(buildings_array), strtonum);
     }
 
