@@ -166,6 +166,7 @@ function importsavecode() {
   let array;
   let savecodetoimport = inputvalue;
 
+  //TODO: Make sure this code works
   if (savecodetoimport != null) {
     let splitcode = savecodetoimport.split(",");
     let buildings_array = splitcode[0];
