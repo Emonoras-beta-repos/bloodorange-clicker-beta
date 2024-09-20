@@ -57,8 +57,9 @@ function getcookies(neededcookie) {
 
 function setcookies(score, buildings) {
   let scorecookie = (document.cookie = "score=" + score + "; path=/");
-  let buildingcookie = (document.cookie =
-    `buildings=${JSON.stringify(buildings)}; path=/`);
+  let buildingcookie = (document.cookie = `buildings=${JSON.stringify(
+    buildings
+  )}; path=/`);
 }
 
 /* Load cookie values on page (re)load */
@@ -77,7 +78,6 @@ if (buildings !== null && Array.isArray(buildings)) {
   ) {
     $(document).ready(function () {
       for (let i = 0; i < 5; i++) {
-
         // Cost Variable factoring
         cursor_cost = 10 * 2 ** buildings[0];
         tree_cost = 100 * 2 ** buildings[1];
@@ -95,9 +95,7 @@ if (buildings !== null && Array.isArray(buildings)) {
 
         // Actual update function
         $(`.${building_owned[i]}`).text(`You Own: ${buildings[i]}`);
-        $(`.${building_cost[i]}`).text(
-          `Cost: ${cost_list[i]}`
-        );
+        $(`.${building_cost[i]}`).text(`Cost: ${cost_list[i]}`);
 
         // Factor in lost currency gain during loading sequence
         updatecounter();
@@ -124,9 +122,7 @@ if (buildings !== null && Array.isArray(buildings)) {
     ];
 
     $(`.${building_owned[i]}`).text(`You Own: ${buildings[i]}`);
-    $(`.${building_cost[i]}`).text(
-        `Cost: ${cost_list[i]}`
-    );
+    $(`.${building_cost[i]}`).text(`Cost: ${cost_list[i]}`);
   }
 }
 
@@ -142,24 +138,54 @@ function opensavemenus(menu) {
 function generatesavecode() {
   const diag = document.getElementById("save-code-made");
   let savecodetxt = document.getElementById("savecode");
-  let savecode = buildings[0] > 9 || buildings[1] > 9 || buildings[2] > 9 || buildings[3] > 9 || buildings[4] > 9 ? [buildings[0], ".", buildings[1], ".", buildings[2], ".", buildings[3], ".", buildings[4], ",", score] : [buildings, ",",score];
-  
+  let savecode;
+  if (
+    buildings[0] > 9 ||
+    buildings[1] > 9 ||
+    buildings[2] > 9 ||
+    buildings[3] > 9 ||
+    buildings[4] > 9
+  ) {
+    savecode = [
+      buildings[0],
+      ".",
+      buildings[1],
+      ".",
+      buildings[2],
+      ".",
+      buildings[3],
+      ".",
+      buildings[4],
+      "-",
+      score,
+    ];
+  } else {
+    savecode = [
+      buildings[0],
+      buildings[1],
+      buildings[2],
+      buildings[3],
+      buildings[4],
+      "-",
+      score,
+    ];
+  }
   savecodetxt.innerHTML = savecode;
   diag.showModal();
 }
 
 function importsavecode() {
-  const input = document.getElementById("imported-save-code");
-  const inputvalue = input;
+  let input = document.getElementById("imported-save-code");
+  let inputvalue = input;
   let array;
-
+  console.log(inputvalue);
   //TODO: Make sure this code works
   if (inputvalue == null) {
     return;
   }
   const splitcode = inputvalue.split(",");
   const buildings_array = splitcode[0];
-  const strtonum = num => Number(num);
+  const strtonum = (num) => Number(num);
   if (buildings_array.includes(".")) {
     const buildingsplitcode = buildings_array.split(".");
     const splitedcode = buildingsplitcode;
@@ -169,7 +195,7 @@ function importsavecode() {
   }
 
   for (var i = 0; i < 6; i++) {
-    buildings[i] = array[i]
+    buildings[i] = array[i];
   }
 
   for (var i = 0; i < 5; i++) {
@@ -179,7 +205,7 @@ function importsavecode() {
     shed_cost = 1000 * 2 ** buildings[2];
     farm_cost = 10000 * 2 ** buildings[3];
     orange_orchard_cost = 100000 * 2 ** buildings[4];
-  
+
     const cost_list = [
       cursor_cost,
       tree_cost,
@@ -187,11 +213,9 @@ function importsavecode() {
       farm_cost,
       orange_orchard_cost,
     ];
-  
+
     $(`.${building_owned[i]}`).text(`You Own: ${buildings[i]}`);
-    $(`.${building_cost[i]}`).text(
-        `Cost: ${cost_list[i]}`
-    );
+    $(`.${building_cost[i]}`).text(`Cost: ${cost_list[i]}`);
   }
 }
 
@@ -237,7 +261,7 @@ function purchase(building) {
     $(".cursor-owned").text(`You Own: ${buildings[0]}`);
     $(".cursor-cost").text(`Cost: ${cursor_cost}`);
   } else {
-    alert("not enough score")
+    alert("not enough score");
   }
 
   if (building == "tree" && score >= tree_cost) {
@@ -344,7 +368,7 @@ function purchase(building) {
     $(".orange-cost").text(`Cost: ${orange_cost}`);
     return;
   }
-  alert("Not enough points")
+  alert("Not enough points");
 }
 
 async function updatecounter() {
@@ -414,7 +438,7 @@ async function updatecounter() {
     await sleep(51);
     $(h3).removeClass("scoreupd");
   }
-  
+
   setcookies(score, buildings);
 }
 setInterval(updatecounter, 1000);
