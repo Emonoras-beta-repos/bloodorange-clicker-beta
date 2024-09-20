@@ -175,7 +175,7 @@ function generatesavecode() {
 }
 
 function importsavecode() {
-  let input = document.getElementById("imported-save-code");
+  let input = document.getElementById("imported-save-code").value;
   let inputvalue = input;
   let array;
   console.log(inputvalue);
