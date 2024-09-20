@@ -183,8 +183,9 @@ function importsavecode() {
   if (inputvalue == null) {
     return;
   }
-  const splitcode = inputvalue.split(",");
+  const splitcode = inputvalue.split("-");
   const buildings_array = splitcode[0];
+  const scorecode = splitcode[1];
   const strtonum = (num) => Number(num);
   if (buildings_array.includes(".")) {
     const buildingsplitcode = buildings_array.split(".");
