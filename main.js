@@ -179,11 +179,14 @@ function importsavecode() {
   let inputvalue = input;
   let array;
   console.log(inputvalue);
+  inputvalue.replace(",", "");
   //TODO: Make sure this code works
   if (inputvalue == null) {
     return;
   }
   const splitcode = inputvalue.split("-");
+  console.log(splitcode);
+  console.log(splitcode);
   const buildings_array = splitcode[0];
   const scorecode = splitcode[1];
   const strtonum = (num) => Number(num);
