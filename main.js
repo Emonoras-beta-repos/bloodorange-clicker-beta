@@ -162,9 +162,13 @@ function generatesavecode() {
   } else {
     savecode = [
       buildings[0],
+      ".",
       buildings[1],
+      ".",
       buildings[2],
+      ".",
       buildings[3],
+      ".",
       buildings[4],
       "-",
       score,
@@ -179,7 +183,7 @@ function importsavecode() {
   let inputvalue = input;
   let array;
   console.log(inputvalue);
-  inputvalue.replace(",", "");
+  inputvalue.replace(",", " ");
   //TODO: Make sure this code works
   if (inputvalue == null) {
     return;
