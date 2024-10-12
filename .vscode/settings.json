@@ -1,5 +1,8 @@
 {
-  "cSpell.enableFiletypes": ["!html"],
+  "cSpell.enableFiletypes": [
+    "!html",
+    "!javascript"
+  ],
   "cSpell.words": [
     "dcodeca",
     "getcookies",

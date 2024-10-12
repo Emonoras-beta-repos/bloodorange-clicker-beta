@@ -16,36 +16,40 @@
             <div class="upgrades"></div>
             <br>
             <div class="buildings">
-                <div class="cursor">
-                    <button type="button" class="btn-cfiuc" onclick="purchase('cursor')" title="Congrats! You can click the button harder!"> Purchase a cursor</button>
-                    <br style="line-height: 15px;"> a</br>
-                    <p class="cursor-owned">You Own: 0</p>
-                    <p class="cursor-cost">Cost: 10</p>
+                <div id="row1">
+                    <div class="cursor">
+                        <button type="button" class="btn-cfiuc" onclick="purchase('cursor')" title="Congrats! You can click the button harder!"> Purchase a cursor</button>
+                        <br>
+                        <p class="cursor-owned">You Own: 0</p>
+                        <p class="cursor-cost">Cost: 10</p>
+                    </div>
+                    <div class="tree">
+                        <button type="button" class="btn-cfiuc" onclick="purchase('tree')" title="Orange tree with oranges :O">Purchase a tree</button>
+                        <br>
+                        <p class="tree-owned">You Own: 0</p>
+                        <p class="tree-cost">Cost: 100</p>
+                    </div>
+                    <div class="shed">
+                        <button type="button" class="btn-cfiuc" onclick="purchase('shed')" title="Shed that can spawn boxes of oranges for no particular reason">Purchase a shed</button>
+                        <br>
+                        <p class="shed-owned">You Own: 0</p>
+                        <p class="shed-cost">Cost: 1000</p>
+                    </div>
+                    
                 </div>
-                <div class="tree">
-                    <button type="button" class="btn-cfiuc" onclick="purchase('tree')" title="Orange tree with oranges :O">Purchase a tree</button>
-                    <br style="line-height: 15px;"> a</br>
-                    <p class="tree-owned">You Own: 0</p>
-                    <p class="tree-cost">Cost: 100</p>
-                </div>
-                <div class="shed">
-                    <button type="button" class="btn-cfiuc" onclick="purchase('shed')" title="Shed that can spawn boxes of oranges for no particular reason">Purchase a shed</button>
-                    <br style="line-height: 15px;"> a</br>
-                    <p class="shed-owned">You Own: 0</p>
-                    <p class="shed-cost">Cost: 1000</p>
-                </div>
-                <div class="farm">
-                    <button type="button" class="btn-cfiuc" onclick="purchase('farm')" title="I had no idea you liked slave labor">Purchase a farm</button>
-                    <br style="line-height: 15px;"> a</br>
-                    <p class="farm-owned">You Own: 0</p>
-                    <p class="farm-cost">Cost: 10000</p>
-                </div>
-                <div class="orange_orchard">
-                    <button type="button" class="btn-cfiuc" onclick="purchase('orange-orchard')" title="I do not condolne the use of unpaid human labor">Purchase an orange orchard</button>
-                    <br style="line-height: 15px;"> a</br>
-                    <p class="orange-orchard-owned">You Own: 0</p>
-                    <p class="orange-orchard-cost">Cost: 100000</p>
-
+                <div id="row2">
+                    <div class="farm">
+                        <button type="button" class="btn-cfiuc" onclick="purchase('farm')" title="I had no idea you liked slave labor">Purchase a farm</button>
+                        <br>
+                        <p class="farm-owned">You Own: 0</p>
+                        <p class="farm-cost">Cost: 10000</p>
+                    </div>
+                    <div class="orange_orchard">
+                        <button type="button" class="btn-cfiuc" onclick="purchase('orange-orchard')" title="I do not condolne the use of unpaid human labor">Purchase an orange orchard</button>
+                        <br>
+                        <p class="orange-orchard-owned">You Own: 0</p>
+                        <p class="orange-orchard-cost">Cost: 100000</p>
+                    </div>
                 </div>
             </div>
         </main>

@@ -1,215 +1,96 @@
-.btn-cfc {
-  padding: 10px;
-  margin: 10px;
-  cursor: pointer;
-  position: absolute;
-  top: 250px;
-  left: 100px;
-  background-color: #ff821b;
-  border-color: black;
-  border-radius: 5px;
-  size: 50px;
-}
-.achivement_notifier {
-  padding: 10px;
-  margin: 10px;
-  cursor: pointer;
-  position: absolute;
-  top: 400px;
-  left: 500px;
-  font-size: large;
-}
-.achivement_notifier_bottom {
-  padding: 10px;
-  margin: 10px;
-  cursor: pointer;
-  position: absolute;
-  top: 420px;
-  left: 504px;
-  font-size: small;
-}
-.shop {
-  position: absolute;
-  top: -10px;
-  left: 415px;
-}
-.buildings {
-  position: absolute;
-  top: 50px;
-  left: 415px;
-}
-.cursor {
-  position: absolute;
-  width: 120px;
-  height: 120px;
-}
-.tree {
-  position: absolute;
-  width: 118px;
-  height: 118px;
-  top: 140px;
-}
-.shed {
-  position: absolute;
-  width: 120px;
-  height: 120px;
-  top: 280px;
-}
-.farm {
-  position: absolute;
-  width: 120px;
-  height: 120px;
-  left: 200px;
-}
-.orange_orchard {
-  position: absolute;
-  width: 120px;
-  height: 120px;
-  left: 200px;
-  top: 140px;
-}
-.btn-cfiuc {
-  cursor: pointer;
-  position: absolute;
-  background-color: #ff821b;
-  border-color: black;
-  border-radius: 5px;
-}
 html {
-  background-color: #e7700e;
+  background: rgb(255,153,4);
+  background: linear-gradient(180deg, rgba(255,153,4,1) 0%, rgba(219,159,41,1) 50%, rgba(255,229,0,1) 100%);
 }
-.scorenum {
+
+* {
+  color: black;
+}
+
+.btn-cfc {
   position: absolute;
-  top: -21px;
-  left: 0px;
+  top: 40%;
+  border-radius: 100px;
+  width: 40px;
+  height: 40px;
+  left: 20%;
 }
+
+.scorenum {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  font-size: 40px;
+  border: 1px solid black;
+  width: calc(2 + 40px + 1em);
+  height: 50px;
+  padding: 1rem;
+  border-radius: 40px;
+  overflow: hidden;
+}
+
 .scoreupd {
-  animation: scoreupd 0.05s linear;
+  animation: scoreupdate 0.5s both;
 }
 
-.save-container {
-  text-align: right;
-  left: 90%;
-  top: 90%;
-}
-.import-container {
-  text-align: right;
-  left: 88%;
-  top: 90%;
-}
-
-@keyframes scoreupd {
+@keyframes scoreupdate {
   0% {
-    transform: scale(1);
+    transform: scale(0)
+  }
+  10% {
+    transform: scale(0.1);
+  }
+  20% {
+    transform: scale(0.2);
+  }
+  30% {
+    transform: scale(0.3);
+  }
+  40% {
+    transform: scale(0.5);
+  }
+  50% {
+    transform: scale(0.8);
   }
   60% {
-    transform: scale(1.2);
+    transform: scale(1.3);
+  }
+  70% {
+    transform: scale(2.1);
   }
   80% {
-    transform: scale(1.1);
+    transform: scale(1.8);
+  }
+  90% {
+    transform: scale(1.3);
   }
   100% {
-    transform: scale(1);
-  }
-}
-@media screen and (max-width: 480px) 
-{
-  .btn-cfc {
-    padding: 10px;
-    margin: 10px;
-    cursor: pointer;
-    position: absolute;
-    top: 250px;
-    left: 100px;
-    background-color: #ff821b;
-    border-color: black;
-    border-radius: 5px;
-    size: 50px;
-  }
-  .achivement_notifier {
-    padding: 10px;
-    margin: 10px;
-    cursor: pointer;
-    position: absolute;
-    top: 400px;
-    left: 500px;
-    font-size: large;
-  }
-  .achivement_notifier_bottom {
-    padding: 10px;
-    margin: 10px;
-    cursor: pointer;
-    position: absolute;
-    top: 420px;
-    left: 504px;
-    font-size: small;
-  }
-  .shop {
-    position: absolute;
-    top: -10px;
-    left: 415px;
-  }
-  .buildings {
-    position: absolute;
-    top: 50px;
-    left: 415px;
-  }
-  .cursor {
-    position: absolute;
-    width: 120px;
-    height: 120px;
-  }
-  .tree {
-    position: absolute;
-    width: 118px;
-    height: 118px;
-    top: 140px;
-  }
-  .shed {
-    position: absolute;
-    width: 120px;
-    height: 120px;
-    top: 280px;
-  }
-  .farm {
-    position: absolute;
-    width: 120px;
-    height: 120px;
-    left: 200px;
-  }
-  .orange_orchard {
-    position: absolute;
-    width: 120px;
-    height: 120px;
-    left: 200px;
-    top: 140px;
-  }
-  .btn-cfiuc {
-    cursor: pointer;
-    position: absolute;
-    background-color: #ff821b;
-    border-color: black;
-    border-radius: 5px;
-  }
-  html {
-    background-color: #e7700e;
-  }
-  .scorenum {
-    position: absolute;
-    top: -21px;
-    left: 0px;
-  }
-  .scoreupd {
-    animation: scoreupd 0.05s linear;
+    transform: scale(0);
   }
 }
 
-br {
-  color: #ff821b;
+.shop {
+  height: 100%;
+  top: -2%;
+  left: 70%;
+  position: relative;
+  width: 25%;
 }
 
-
-br {
-  color: #ff821b;
+#row1 {
+  top: -41%;
+  width: 100px;
 }
 
+#row2 {
+  left: 35%;
+  top: -40%;
+  position: relative;
+  width: 140px;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+}
