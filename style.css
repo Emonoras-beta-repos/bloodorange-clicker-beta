@@ -1,5 +1,6 @@
 html {
   background: linear-gradient(180deg, rgba(255, 153, 4, 1) 0%, rgba(219, 159, 41, 1) 50%, rgba(255, 229, 0, 1) 100%);
+  overflow-y: hidden;
 }
 
 * {
@@ -61,24 +62,24 @@ body {
 }
 
 .shop {
-  height: 100%;
-  top: -2%;
-  left: 70%;
-  position: relative;
-  width: 25%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start; 
+  align-items: flex-start;
+  width: 300px;
+  position: absolute;
+  right: 0; 
+  top: 10%; 
+  max-height: 80vh; 
+  overflow-y: auto; 
 }
 
-#row1 {
-  top: -41%;
-  width: 100px;
+.item {
+  flex: 1 0 30%; 
+  box-sizing: border-box; 
+  margin: 10px; 
+  padding: 20px;
+  text-align: center; 
 }
 
-#row2 {
-  left: 35%;
-  position: relative;
-  width: 140px;
-}
 
-.save {
-  top: -40%;
-}
