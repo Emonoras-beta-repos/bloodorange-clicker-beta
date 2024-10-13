@@ -91,6 +91,7 @@ function updateCostsAndUI() {
     $(`.${building_owned[i]}`).text(`You Own: ${buildings[i]}`);
     $(`.${building_cost[i]}`).text(`Cost: ${cost_list[i]}`);
   }
+
 }
 
 updateCostsAndUI(); // Initial UI update
@@ -125,11 +126,10 @@ function importsavecode() {
   updateCostsAndUI(); // Update UI after importing
 }
 
-/* Score update function */
 async function scoreupdate() {
   score++;
   if (buildings[0] > 0) {
-    score += buildings[0]; // Add the cursor income
+    score += buildings[0]; 
   }
   $(".scorenum").text(score);
   h3.addClass("scoreupd");
@@ -138,36 +138,29 @@ async function scoreupdate() {
   setCookies(score, buildings);
 }
 
-/* Purchase function */
 function purchase(building) {
-  const buildingIndex = {
-    cursor: { itemIndex: 0 },
-    tree: { itemIndex: 1 },
-    shed: { itemIndex: 2 },
-    farm: { itemIndex: 3 },
-    "orange orchard": { itemIndex: 4 },
-  };
+  const buildingIndex = [0,1,2,3,4];
+  let buildingOC;
+  let costOB;
+  if (building == "cursor") {buildingOC = 0; costOB = cursor_cost}
+  if (building == "tree") {buildingOC = 1; costOB = tree_cost}
+  if (building == "shed") {buildingOC = 2; costOB = shed_cost}
+  if (building == "farm") {buildingOC = 3; costOB = farm_cost}
+  if (building == "orange-orchard") {buildingOC = 4; costOB = orange_orchard_cost}
+  console.log(building);
+  let array = ["cursor", "tree", "shed", "farm", "orange-orchard"]
 
-  const buildingData = buildingIndex[building];
-  if (!buildingData) {
-    alert("Invalid building type.");
-    return;
-  }
-
-  const { itemIndex } = buildingData;
-  const currentCost = 10 * 2 ** buildings[itemIndex]; // Dynamic cost calculation
-
-  if (score >= currentCost) {
-    score -= currentCost;
-    buildings[itemIndex]++;
-    setCookies(score, buildings); // Ensure cookies are updated
-    updateCostsAndUI(); // Update display after purchase
+  if (score >= costOB) {
+    score -= costOB;
+    costOB *= 2;
+    buildings[buildingOC]++;
+    setCookies(score, buildings); 
+    updateCostsAndUI(); 
   } else {
     alert("Not enough points");
   }
 }
 
-/* Update counter function */
 async function updateCounter() {
   const h3text = parseInt($(".scorenum").text());
 
@@ -179,8 +172,27 @@ async function updateCounter() {
   }
 
   updateCostsAndUI();
-
   setCookies(score, buildings);
 }
 
-setInterval(updateCounter, 1000);
+function updateScore() {
+  for (let i = 1; i < buildings.length; i++) {
+    if (buildings[i] > 0) {
+      if (buildings[i] === 1) {
+        score += buildings[i];
+      }
+      if (buildings[i] === 2) {
+        score += buildings[i] * 10;
+      }
+      if (buildings[i] === 3) {
+        score += buildings[i] * 100;
+      }
+      if (buildings[i] === 4) {
+        score += buildings[i] * 1000;
+      }
+    }
+  }
+}
+
+setInterval(updateCounter, 1); 
+setInterval(updateScore, 1000);
