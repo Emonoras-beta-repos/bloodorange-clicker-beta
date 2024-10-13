@@ -82,7 +82,7 @@ body {
   overflow-y: auto; 
 }
 
-.shop.buildings button {
+.shop.buildings#row1 button, .shop.buildings#row2 button {
   border-radius: 20px;
 }
 
