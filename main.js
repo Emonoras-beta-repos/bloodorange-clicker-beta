@@ -268,9 +268,11 @@ function purchase(building) {
 
     $(".cursor-owned").text(`You Own: ${buildings[0]}`);
     $(".cursor-cost").text(`Cost: ${cursor_cost}`);
-  } else {
+    return;
+  } else if (building == "cursor") {
     alert("not enough score");
   }
+    
 
   if (building == "tree" && score >= tree_cost) {
     score -= tree_cost;
@@ -295,7 +297,8 @@ function purchase(building) {
 
     $(".tree-owned").text(`You Own: ${buildings[1]}`);
     $(".tree-cost").text(`Cost: ${tree_cost}`);
-  } else {
+    return;
+  } else if (building == "tree"){
     alert("Not enough points!");
   }
 
@@ -322,7 +325,8 @@ function purchase(building) {
 
     $(".shed-owned").text(`You Own: ${buildings[2]}`);
     $(".shed-cost").text(`Cost: ${shed_cost}`);
-  } else {
+    return;
+  } else if (building == "shed"){
     alert("Not enough points!");
   }
   if (building == "farm" && score >= farm_cost) {
@@ -348,7 +352,8 @@ function purchase(building) {
 
     $(".farm-owned").text(`You Own: ${buildings[3]}`);
     $(".farm-cost").text(`Cost: ${farm_cost}`);
-  } else {
+    return;
+  } else if (building == "farm"){
     alert("Not enough points!");
   }
   if (building == "orange orchard" && score >= orange_cost) {
@@ -375,8 +380,10 @@ function purchase(building) {
     $(".orange-owned").text(`You Own: ${buildings[4]}`);
     $(".orange-cost").text(`Cost: ${orange_cost}`);
     return;
+  } else if (building == "orange orchard") {
+    alert("Not enough points");
   }
-  alert("Not enough points");
+  
 }
 
 async function updatecounter() {

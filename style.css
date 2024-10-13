@@ -26,7 +26,8 @@ body {
   cursor: pointer;
   transition: transform 0.1s ease, box-shadow 0.1s ease;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  color: white;
+  color: orangered;
+  background-color: orangered;
   font-size: 16px;
   display: flex;
   justify-content: center;
@@ -82,4 +83,8 @@ body {
   text-align: center; 
 }
 
-
+.save {
+  position: relative;
+  left: -45%;
+  top: 40%;
+}
