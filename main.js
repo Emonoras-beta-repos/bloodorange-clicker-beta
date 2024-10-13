@@ -278,74 +278,42 @@ function purchase(building) {
 }
 
 
-async function updatecounter() {
+async function updateCounter() {
   const h3text = parseInt($(".scorenum").text());
-  if (h3text < score || h3text > score) {
-    $(".scorenum").text(score);
-    $(h3).addClass("scoreupd");
-    await sleep(51);
-    $(h3).removeClass("scoreupd");
-  }
-  if (buildings[1] > 0) {
-    const tottree = buildings[1];
-    const upgradebonus = 0;
-    if (buildings[1] > 10) {
-      const treebonus = tottree + upgradebonus + 5 * 2;
-      score += treebonus;
-    }
-    score += tottree;
-    score += upgradebonus;
-    $(".scorenum").text(score);
-    $(h3).addClass("scoreupd");
-    await sleep(51);
-    $(h3).removeClass("scoreupd");
-  }
-  if (buildings[2] > 0) {
-    let totshed = buildings[2];
-    totshed *= 10;
-    const upgradebonus = 0;
-    if (buildings[2] > 10) {
-      const shedbonus = totshed + upgradebonus + 5 * 2;
-      score += shedbonus;
-    }
-    score += totshed;
-    score += upgradebonus;
-    $(".scorenum").text(score);
-    $(h3).addClass("scoreupd");
-    await sleep(51);
-    $(h3).removeClass("scoreupd");
-  }
-  if (buildings[3] > 0) {
-    let totalfarm = buildings[3];
-    totalfarm *= 100;
-    const upgradebonus = 0;
-    if (buildings[3] > 10) {
-      const farmbonus = totfarm + upgradebonus + 5 * 2;
-      score += farmbonus;
-    }
-    score += totalfarm;
-    score += upgradebonus;
-    $(".scorenum").text(score);
-    $(h3).addClass("scoreupd");
-    await sleep(51);
-    $(h3).removeClass("scoreupd");
-  }
-  if (buildings[4] > 0) {
-    let totalorange = buildings[4];
-    totalorange *= 1000;
-    const upgradebonus = 0;
-    if (buildings[4] > 10) {
-      const orchardbonus = totorange + upgradebonus + 5 * 2;
-      score += orchardbonus;
-    }
-    score += totalorange;
-    score += upgradebonus;
+
+  // Update score display if the score has changed
+  if (h3text !== score) {
     $(".scorenum").text(score);
     $(h3).addClass("scoreupd");
     await sleep(51);
     $(h3).removeClass("scoreupd");
   }
 
+  const buildingBonuses = [
+    { multiplier: 1, threshold: 10, bonusMultiplier: 5, base: 0 },    // Cursor
+    { multiplier: 1, threshold: 10, bonusMultiplier: 5, base: 0 },    // Tree
+    { multiplier: 10, threshold: 10, bonusMultiplier: 5, base: 0 },   // Shed
+    { multiplier: 100, threshold: 10, bonusMultiplier: 5, base: 0 },  // Farm
+    { multiplier: 1000, threshold: 10, bonusMultiplier: 5, base: 0 }, // Orange Orchard
+  ];
+
+  for (let i = 1; i < buildings.length; i++) {
+    if (buildings[i] > 0) {
+      let total = buildings[i] * buildingBonuses[i].multiplier;
+      if (buildings[i] > buildingBonuses[i].threshold) {
+        const bonus = total + buildingBonuses[i].base + (buildingBonuses[i].bonusMultiplier * 2);
+        score += bonus;
+      }
+      score += total;
+    }
+  }
+
+  $(".scorenum").text(score);
+  $(h3).addClass("scoreupd");
+  await sleep(51);
+  $(h3).removeClass("scoreupd");
+
   setcookies(score, buildings);
 }
+
 setInterval(updatecounter, 1000);
