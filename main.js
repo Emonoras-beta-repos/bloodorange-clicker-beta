@@ -225,13 +225,14 @@ function purchase(building) {
   if (score >= currentCost) {
     score -= currentCost;
     buildings[itemIndex]++;
-    updateCounter();
-    setCookies(score, buildings);
+    updateCounter(); // Ensure the counter is updated after purchase
+    setCookies(score, buildings); // Ensure cookies are updated
 
+    // Update display
     $(ownedClass).text(`You Own: ${buildings[itemIndex]}`);
     $(costClass).text(`Cost: ${currentCost}`);
   } else {
-    alert("Not enough points!");
+    alert("Not enough points")
   }
 }
 
