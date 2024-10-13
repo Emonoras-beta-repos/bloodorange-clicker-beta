@@ -245,6 +245,12 @@ async function scoreupdate() {
 }
 
 function purchase(building) {
+
+  /* let buildingIndex = {
+    cursor: { itemIndex: 0, baseCost: 10, ownedClass: ".cursor-owned", costClass: ".cursor-cost", owned: buildings[0], },
+    tree: { itemIndex: 1, baseCost: 100, ownedClass: ".tree-owned", costClass: ".tree-cost", owned: buildings[1], },
+    
+  }*/
   if (building == "cursor" && score >= cursor_cost) {
     score -= cursor_cost;
     updatecounter();
