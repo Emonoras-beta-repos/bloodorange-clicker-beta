@@ -71,11 +71,7 @@ if (getcookies("score") != null) {
 
 buildings = getcookies("buildings");
 if (buildings !== null && Array.isArray(buildings)) {
-  if (
-    buildings.length > 0 &&
-    buildings[0] !== "undefined" &&
-    buildings[0] !== "NaN"
-  ) {
+  if (buildings.length > 0 && buildings[0] !== "undefined" && buildings[0] !== "NaN") {
     $(document).ready(function () {
       for (let i = 0; i < 5; i++) {
         // Cost Variable factoring
@@ -86,11 +82,7 @@ if (buildings !== null && Array.isArray(buildings)) {
         orange_orchard_cost = 100000 * 2 ** buildings[4];
 
         const cost_list = [
-          cursor_cost,
-          tree_cost,
-          shed_cost,
-          farm_cost,
-          orange_orchard_cost,
+          cursor_cost, tree_cost, shed_cost, farm_cost, orange_orchard_cost,
         ];
 
         // Actual update function
@@ -114,11 +106,7 @@ if (buildings !== null && Array.isArray(buildings)) {
     orange_orchard_cost = 100000 * 2 ** buildings[4];
 
     const cost_list = [
-      cursor_cost,
-      tree_cost,
-      shed_cost,
-      farm_cost,
-      orange_orchard_cost,
+      cursor_cost, tree_cost, shed_cost, farm_cost, orange_orchard_cost,
     ];
 
     $(`.${building_owned[i]}`).text(`You Own: ${buildings[i]}`);
@@ -139,39 +127,13 @@ function generatesavecode() {
   const diag = document.getElementById("save-code-made");
   let savecodetxt = document.getElementById("savecode");
   let savecode;
-  if (
-    buildings[0] > 9 ||
-    buildings[1] > 9 ||
-    buildings[2] > 9 ||
-    buildings[3] > 9 ||
-    buildings[4] > 9
-  ) {
+  if (buildings[0] > 9 || buildings[1] > 9 || buildings[2] > 9 || buildings[3] > 9 || buildings[4] > 9) {
     savecode = [
-      buildings[0],
-      ".",
-      buildings[1],
-      ".",
-      buildings[2],
-      ".",
-      buildings[3],
-      ".",
-      buildings[4],
-      "-",
-      score,
+      buildings[0], ".", buildings[1], ".", buildings[2], ".", buildings[3], ".", buildings[4], "-", score,
     ];
   } else {
     savecode = [
-      buildings[0],
-      ".",
-      buildings[1],
-      ".",
-      buildings[2],
-      ".",
-      buildings[3],
-      ".",
-      buildings[4],
-      "-",
-      score,
+      buildings[0], ".", buildings[1], ".", buildings[2], ".", buildings[3], ".", buildings[4], "-", score,
     ];
   }
   savecodetxt.innerHTML = savecode;
@@ -215,11 +177,7 @@ function importsavecode() {
     orange_orchard_cost = 100000 * 2 ** buildings[4];
 
     const cost_list = [
-      cursor_cost,
-      tree_cost,
-      shed_cost,
-      farm_cost,
-      orange_orchard_cost,
+      cursor_cost, tree_cost, shed_cost, farm_cost, orange_orchard_cost,
     ];
 
     $(`.${building_owned[i]}`).text(`You Own: ${buildings[i]}`);
