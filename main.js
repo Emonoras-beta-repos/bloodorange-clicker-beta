@@ -55,7 +55,7 @@ function getcookies(neededcookie) {
   return null; // Default return value if cookie is not found
 }
 
-function setcookies(score, buildings) {
+function setCookies(score, buildings) {
   let scorecookie = (document.cookie = "score=" + score + "; path=/");
   let buildingcookie = (document.cookie = `buildings=${JSON.stringify(
     buildings
@@ -90,13 +90,13 @@ if (buildings !== null && Array.isArray(buildings)) {
         $(`.${building_cost[i]}`).text(`Cost: ${cost_list[i]}`);
 
         // Factor in lost currency gain during loading sequence
-        updatecounter();
+        updateCounter();
       }
     });
   }
 } else {
   buildings = [0, 0, 0, 0, 0];
-  setcookies(score, buildings);
+  setCookies(score, buildings);
   for (let i = 0; i < 5; i++) {
     // Cost Variable factoring
     cursor_cost = 10 * 2 ** buildings[0];
@@ -199,16 +199,16 @@ async function scoreupdate() {
   $(h3).addClass("scoreupd");
   await sleep(51);
   $(h3).removeClass("scoreupd");
-  setcookies(score, buildings);
+  setCookies(score, buildings);
 }
 
 function purchase(building) {
   const buildingIndex = {
-    cursor: { itemIndex: 0, baseCost: 10, ownedClass: ".cursor-owned", costClass: ".cursor-cost" },
-    tree: { itemIndex: 1, baseCost: 100, ownedClass: ".tree-owned", costClass: ".tree-cost" },
-    shed: { itemIndex: 2, baseCost: 1000, ownedClass: ".shed-owned", costClass: ".shed-cost" },
-    farm: { itemIndex: 3, baseCost: 10000, ownedClass: ".farm-owned", costClass: ".farm-cost" },
-    "orange orchard": { itemIndex: 4, baseCost: 100000, ownedClass: ".orange-owned", costClass: ".orange-cost" },
+    cursor: { itemIndex: 0 },
+    tree: { itemIndex: 1 },
+    shed: { itemIndex: 2 },
+    farm: { itemIndex: 3 },
+    "orange orchard": { itemIndex: 4 },
   };
 
   const buildingData = buildingIndex[building];
@@ -218,23 +218,25 @@ function purchase(building) {
     return;
   }
 
-  const { itemIndex, baseCost, ownedClass, costClass } = buildingData;
+  const { itemIndex } = buildingData;
 
-  let currentCost = baseCost * Math.pow(2, buildings[itemIndex]);
-  
+  let currentCost = 10 * 2 ** buildings[itemIndex]; // Dynamic cost calculation
+
   if (score >= currentCost) {
     score -= currentCost;
     buildings[itemIndex]++;
     updateCounter(); // Ensure the counter is updated after purchase
     setCookies(score, buildings); // Ensure cookies are updated
 
-    // Update display
-    $(ownedClass).text(`You Own: ${buildings[itemIndex]}`);
-    $(costClass).text(`Cost: ${currentCost}`);
+    // Update display after purchase
+    $(`.${building_owned[itemIndex]}`).text(`You Own: ${buildings[itemIndex]}`);
+    // Call updateCounter to refresh costs
+    updateCounter();
   } else {
-    alert("Not enough points")
+    alert("Not enough points");
   }
 }
+
 
 
 async function updateCounter() {
@@ -248,23 +250,20 @@ async function updateCounter() {
     $(h3).removeClass("scoreupd");
   }
 
-  const buildingBonuses = [
-    { multiplier: 1, threshold: 10, bonusMultiplier: 5, base: 0 },    // Cursor
-    { multiplier: 1, threshold: 10, bonusMultiplier: 5, base: 0 },    // Tree
-    { multiplier: 10, threshold: 10, bonusMultiplier: 5, base: 0 },   // Shed
-    { multiplier: 100, threshold: 10, bonusMultiplier: 5, base: 0 },  // Farm
-    { multiplier: 1000, threshold: 10, bonusMultiplier: 5, base: 0 }, // Orange Orchard
-  ];
+  // Calculate costs based on the number of buildings owned
+  cursor_cost = 10 * 2 ** buildings[0];
+  tree_cost = 100 * 2 ** buildings[1];
+  shed_cost = 1000 * 2 ** buildings[2];
+  farm_cost = 10000 * 2 ** buildings[3];
+  orange_orchard_cost = 100000 * 2 ** buildings[4];
 
-  for (let i = 1; i < buildings.length; i++) {
-    if (buildings[i] > 0) {
-      let total = buildings[i] * buildingBonuses[i].multiplier;
-      if (buildings[i] > buildingBonuses[i].threshold) {
-        const bonus = total + buildingBonuses[i].base + (buildingBonuses[i].bonusMultiplier * 2);
-        score += bonus;
-      }
-      score += total;
-    }
+  let costVars = [cursor_cost, tree_cost, shed_cost, farm_cost, orange_orchard_cost];
+
+  for (let i = 0; i < costVars.length; i++) {
+    let costTextElement = $(`.${building_cost[i]}`);
+    // Update the cost display
+    costTextElement.text("Cost: " + costVars[i].toString());
+    console.log(`Updated ${building_cost[i]} to Cost: ${costVars[i]}`); // Log the update
   }
 
   $(".scorenum").text(score);
@@ -272,7 +271,8 @@ async function updateCounter() {
   await sleep(51);
   $(h3).removeClass("scoreupd");
 
-  setcookies(score, buildings);
+  setCookies(score, buildings);
 }
 
-setInterval(updatecounter, 1000);
+
+setInterval(updateCounter, 1000);
