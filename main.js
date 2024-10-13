@@ -1,19 +1,16 @@
 // score, upgrades, and buildings variables
 let score = 0;
 let buildings = [0, 0, 0, 0, 0];
-// cost variables
+
+// Cost variables with their initial values
 let cursor_cost = 10;
-let cursor_cost_decrease = 0.25;
 let tree_cost = 100;
-let tree_cost_decrease = 0.35;
 let shed_cost = 1000;
-let shed_cost_decrease = 0.45;
 let farm_cost = 10000;
-let farm_cost_decrease = 0.55;
 let orange_orchard_cost = 100000;
-let orange_orchard_cost_decrease = 0.65;
-// extra variables
-let h3 = document.getElementsByClassName("scorenum");
+
+// Extra variables
+const h3 = $(".scorenum");
 const building_cost = [
   "cursor-cost",
   "tree-cost",
@@ -28,96 +25,77 @@ const building_owned = [
   "farm-owned",
   "orange-orchard-owned",
 ];
+
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 /* Cookie functions (import, and export) */
 
-function getcookies(neededcookie) {
-  let cookies = document.cookie.split(";");
-  for (let i = 0; i < cookies.length; i++) {
-    let cookie = cookies[i].trim();
-    if (neededcookie === "score" && cookie.startsWith("score=")) {
-      score = parseInt(cookie.substring("score=".length));
-      return score;
+function getCookies(neededCookie) {
+  const cookies = document.cookie.split(";");
+  for (let cookie of cookies) {
+    cookie = cookie.trim();
+    if (neededCookie === "score" && cookie.startsWith("score=")) {
+      return parseInt(cookie.substring("score=".length)) || 0;
     }
-    if (neededcookie === "buildings" && cookie.startsWith("buildings=")) {
-      let newcookie = cookie.substring("buildings=".length).trim();
+    if (neededCookie === "buildings" && cookie.startsWith("buildings=")) {
       try {
-        return JSON.parse(newcookie); // Return the parsed buildings array
+        return JSON.parse(cookie.substring("buildings=".length).trim());
       } catch (e) {
         console.error("Failed to parse buildings cookie:", e);
-        return null; // Handle JSON parsing errors
+        return null;
       }
     }
   }
-  return null; // Default return value if cookie is not found
+  return null;
 }
 
 function setCookies(score, buildings) {
-  let scorecookie = (document.cookie = "score=" + score + "; path=/");
-  let buildingcookie = (document.cookie = `buildings=${JSON.stringify(
-    buildings
-  )}; path=/`);
+  document.cookie = `score=${score}; path=/`;
+  document.cookie = `buildings=${JSON.stringify(buildings)}; path=/`;
 }
 
 /* Load cookie values on page (re)load */
 
-if (getcookies("score") != null) {
-  $(".scorenum").text(getcookies("score"));
-  score = getcookies("score"); // update score value to avoid re-calculating it in case of page refresh or back navigation.
+const savedScore = getCookies("score");
+if (savedScore !== null) {
+  score = savedScore;
+  $(".scorenum").text(score);
 }
 
-buildings = getcookies("buildings");
-if (buildings !== null && Array.isArray(buildings)) {
-  if (buildings.length > 0 && buildings[0] !== "undefined" && buildings[0] !== "NaN") {
-    $(document).ready(function () {
-      for (let i = 0; i < 5; i++) {
-        // Cost Variable factoring
-        cursor_cost = 10 * 2 ** buildings[0];
-        tree_cost = 100 * 2 ** buildings[1];
-        shed_cost = 1000 * 2 ** buildings[2];
-        farm_cost = 10000 * 2 ** buildings[3];
-        orange_orchard_cost = 100000 * 2 ** buildings[4];
-
-        const cost_list = [
-          cursor_cost, tree_cost, shed_cost, farm_cost, orange_orchard_cost,
-        ];
-
-        // Actual update function
-        $(`.${building_owned[i]}`).text(`You Own: ${buildings[i]}`);
-        $(`.${building_cost[i]}`).text(`Cost: ${cost_list[i]}`);
-
-        // Factor in lost currency gain during loading sequence
-        updateCounter();
-      }
-    });
-  }
+const savedBuildings = getCookies("buildings");
+if (savedBuildings && Array.isArray(savedBuildings)) {
+  buildings = savedBuildings;
 } else {
   buildings = [0, 0, 0, 0, 0];
-  setCookies(score, buildings);
+}
+
+// Update costs and UI on page load
+function updateCostsAndUI() {
+  cursor_cost = 10 * 2 ** buildings[0];
+  tree_cost = 100 * 2 ** buildings[1];
+  shed_cost = 1000 * 2 ** buildings[2];
+  farm_cost = 10000 * 2 ** buildings[3];
+  orange_orchard_cost = 100000 * 2 ** buildings[4];
+
+  const cost_list = [
+    cursor_cost,
+    tree_cost,
+    shed_cost,
+    farm_cost,
+    orange_orchard_cost,
+  ];
+
   for (let i = 0; i < 5; i++) {
-    // Cost Variable factoring
-    cursor_cost = 10 * 2 ** buildings[0];
-    tree_cost = 100 * 2 ** buildings[1];
-    shed_cost = 1000 * 2 ** buildings[2];
-    farm_cost = 10000 * 2 ** buildings[3];
-    orange_orchard_cost = 100000 * 2 ** buildings[4];
-
-    const cost_list = [
-      cursor_cost, tree_cost, shed_cost, farm_cost, orange_orchard_cost,
-    ];
-
     $(`.${building_owned[i]}`).text(`You Own: ${buildings[i]}`);
     $(`.${building_cost[i]}`).text(`Cost: ${cost_list[i]}`);
   }
 }
 
-/* 
-Save Menu functions
-*/
+updateCostsAndUI(); // Initial UI update
 
+/* Save Menu functions */
 function opensavemenus(menu) {
   const diag = document.getElementById(menu);
   diag.showModal();
@@ -125,83 +103,42 @@ function opensavemenus(menu) {
 
 function generatesavecode() {
   const diag = document.getElementById("save-code-made");
-  let savecodetxt = document.getElementById("savecode");
-  let savecode;
-  if (buildings[0] > 9 || buildings[1] > 9 || buildings[2] > 9 || buildings[3] > 9 || buildings[4] > 9) {
-    savecode = [
-      buildings[0], ".", buildings[1], ".", buildings[2], ".", buildings[3], ".", buildings[4], "-", score,
-    ];
-  } else {
-    savecode = [
-      buildings[0], ".", buildings[1], ".", buildings[2], ".", buildings[3], ".", buildings[4], "-", score,
-    ];
-  }
+  const savecodetxt = document.getElementById("savecode");
+  const savecode = `${buildings.join(".")}-${score}`;
   savecodetxt.innerHTML = savecode;
   diag.showModal();
 }
 
 function importsavecode() {
-  let input = document.getElementById("imported-save-code").value;
-  let inputvalue = input;
-  let array;
-  console.log(inputvalue);
-  inputvalue.replace(",", " ");
-  //TODO: Make sure this code works
-  if (inputvalue == null) {
-    return;
-  }
-  const splitcode = inputvalue.split("-");
-  console.log(splitcode);
-  console.log(splitcode);
-  const buildings_array = splitcode[0];
-  const scorecode = splitcode[1];
-  const strtonum = (num) => Number(num);
-  if (buildings_array.includes(".")) {
-    const buildingsplitcode = buildings_array.split(".");
-    const splitedcode = buildingsplitcode;
-    array = Array.from(String(splitedcode), strtonum);
+  const input = document.getElementById("imported-save-code").value;
+  if (!input) return;
+
+  const [buildingsArray, scoreCode] = input.split("-");
+  if (scoreCode) score = parseInt(scoreCode.trim());
+
+  if (buildingsArray.includes(".")) {
+    buildings = buildingsArray.split(".").map(Number);
   } else {
-    array = Array.from(String(buildings_array), strtonum);
+    buildings = buildingsArray.split("").map(Number);
   }
 
-  for (var i = 0; i < 6; i++) {
-    buildings[i] = array[i];
-  }
-
-  for (var i = 0; i < 5; i++) {
-    // Cost Variable factoring
-    cursor_cost = 10 * 2 ** buildings[0];
-    tree_cost = 100 * 2 ** buildings[1];
-    shed_cost = 1000 * 2 ** buildings[2];
-    farm_cost = 10000 * 2 ** buildings[3];
-    orange_orchard_cost = 100000 * 2 ** buildings[4];
-
-    const cost_list = [
-      cursor_cost, tree_cost, shed_cost, farm_cost, orange_orchard_cost,
-    ];
-
-    $(`.${building_owned[i]}`).text(`You Own: ${buildings[i]}`);
-    $(`.${building_cost[i]}`).text(`Cost: ${cost_list[i]}`);
-  }
+  updateCostsAndUI(); // Update UI after importing
 }
 
-/* Other Utility Functions (score, update GUI, etc.)*/
-
+/* Score update function */
 async function scoreupdate() {
   score++;
   if (buildings[0] > 0) {
-    const totcursor = buildings[0];
-    const upgradebonus = 0;
-    score += totcursor;
-    score += upgradebonus;
+    score += buildings[0]; // Add the cursor income
   }
   $(".scorenum").text(score);
-  $(h3).addClass("scoreupd");
+  h3.addClass("scoreupd");
   await sleep(51);
-  $(h3).removeClass("scoreupd");
+  h3.removeClass("scoreupd");
   setCookies(score, buildings);
 }
 
+/* Purchase function */
 function purchase(building) {
   const buildingIndex = {
     cursor: { itemIndex: 0 },
@@ -212,67 +149,38 @@ function purchase(building) {
   };
 
   const buildingData = buildingIndex[building];
-
   if (!buildingData) {
-    alert("There is a code error, please contact the developer. Code: 01");
+    alert("Invalid building type.");
     return;
   }
 
   const { itemIndex } = buildingData;
-
-  let currentCost = 10 * 2 ** buildings[itemIndex]; // Dynamic cost calculation
+  const currentCost = 10 * 2 ** buildings[itemIndex]; // Dynamic cost calculation
 
   if (score >= currentCost) {
     score -= currentCost;
     buildings[itemIndex]++;
-    updateCounter(); // Ensure the counter is updated after purchase
     setCookies(score, buildings); // Ensure cookies are updated
-
-    // Update display after purchase
-    $(`.${building_owned[itemIndex]}`).text(`You Own: ${buildings[itemIndex]}`);
-    // Call updateCounter to refresh costs
-    updateCounter();
+    updateCostsAndUI(); // Update display after purchase
   } else {
     alert("Not enough points");
   }
 }
 
-
-
+/* Update counter function */
 async function updateCounter() {
   const h3text = parseInt($(".scorenum").text());
 
-  // Update score display if the score has changed
   if (h3text !== score) {
     $(".scorenum").text(score);
-    $(h3).addClass("scoreupd");
+    h3.addClass("scoreupd");
     await sleep(51);
-    $(h3).removeClass("scoreupd");
+    h3.removeClass("scoreupd");
   }
 
-  // Calculate costs based on the number of buildings owned
-  cursor_cost = 10 * 2 ** buildings[0];
-  tree_cost = 100 * 2 ** buildings[1];
-  shed_cost = 1000 * 2 ** buildings[2];
-  farm_cost = 10000 * 2 ** buildings[3];
-  orange_orchard_cost = 100000 * 2 ** buildings[4];
-
-  let costVars = [cursor_cost, tree_cost, shed_cost, farm_cost, orange_orchard_cost];
-
-  for (let i = 0; i < costVars.length; i++) {
-    let costTextElement = $(`.${building_cost[i]}`);
-    // Update the cost display
-    costTextElement.text("Cost: " + costVars[i].toString());
-    console.log(`Updated ${building_cost[i]} to Cost: ${costVars[i]}`); // Log the update
-  }
-
-  $(".scorenum").text(score);
-  $(h3).addClass("scoreupd");
-  await sleep(51);
-  $(h3).removeClass("scoreupd");
+  updateCostsAndUI();
 
   setCookies(score, buildings);
 }
-
 
 setInterval(updateCounter, 1000);
