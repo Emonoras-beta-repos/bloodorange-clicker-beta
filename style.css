@@ -80,6 +80,7 @@ body {
   top: 10%; 
   max-height: 80vh; 
   overflow-y: auto; 
+  border-radius: 20px;
 }
 
 .item {
