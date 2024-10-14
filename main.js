@@ -9,6 +9,15 @@ let shed_cost = 1000;
 let farm_cost = 10000;
 let orange_orchard_cost = 100000;
 
+// Achivement variables
+let clicks = 0;
+let achivements = [
+  { name: "clicker",
+    value: false,
+    description: "You click the cursor 100 times."
+  }
+]
+
 // Extra variables
 const h3 = $(".scorenum");
 const building_cost = [ "cursor-cost", "tree-cost", "shed-cost", "farm-cost", "orange-orchard-cost", ];
@@ -69,6 +78,17 @@ if (savedCps !== null) {
 }
 
 // Update costs and UI on page load
+
+function scaleCost(cost, threshold, scalingFactor, additionalCost = 0) {
+  if (cost <= threshold) {
+    return Math.floor(cost);
+  }
+
+  let scaledCost = (cost - threshold) / scalingFactor + threshold;
+  scaledCost += additionalCost;
+  return Math.floor(scaledCost);
+}
+
 function updateCostsAndUI() {
   cursor_cost = 10 * 2 ** buildings[0];
   tree_cost = 100 * 2 ** buildings[1];
@@ -76,6 +96,11 @@ function updateCostsAndUI() {
   farm_cost = 10000 * 2 ** buildings[3];
   orange_orchard_cost = 100000 * 2 ** buildings[4];
 
+  cursor_cost = scaleCost(cursor_cost, 1000, 1.5, 10);
+  tree_cost = scaleCost(tree_cost, 10000, 2, 100);
+  shed_cost = scaleCost(shed_cost, 100000, 3, 1000);
+  farm_cost = scaleCost(farm_cost, 1000000, 4, 10000);
+  orange_orchard_cost = scaleCost(orange_orchard_cost, 1000000, 4, 10000);
   const cost_list = [ cursor_cost, tree_cost, shed_cost, farm_cost, orange_orchard_cost, ];
 
   for (let i = 0; i < 5; i++) {
@@ -118,6 +143,7 @@ function importsavecode() {
 }
 
 async function scoreupdate() {
+  clicks++;
   score++;
   if (buildings[0] > 0) {
     score += buildings[0]; 
@@ -168,9 +194,16 @@ async function updateCounter() {
 
   updateCostsAndUI();
   setCookies(score, buildings, cps);
+
+  if (clicks === 1000000) {
+    alert("How the hell did you click so many damn times? A million is too much man. Touch grass.")
+  }
 }
 
 function updateScore() { score += cps; }
+
+
+
 
 setInterval(updateCounter, 1); 
 setInterval(updateScore, 1000);
