@@ -1,0 +1,29 @@
+* {
+  color: black;
+}
+
+html {
+  background: linear-gradient(180deg, rgba(255, 153, 4, 1) 0%, rgba(219, 159, 41, 1) 50%, rgba(255, 229, 0, 1) 100%);
+  overflow-y: hidden;
+}
+
+.rubik-txt {
+  font-family: "Rubik", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.scorenum {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  font-size: 40px;
+  border: 1px solid black;
+  width: calc(2 + 40px + 1em);
+  height: 50px;
+  padding: 1rem;
+  border-radius: 40px;
+  overflow: hidden;
+}
