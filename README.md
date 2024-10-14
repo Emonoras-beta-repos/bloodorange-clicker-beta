@@ -1,5 +1,3 @@
-
-[![pages-build-deployment](https://github.com/Existence-dev/simple-webgame/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Existence-dev/simple-webgame/actions/workflows/pages/pages-build-deployment)
 ![GitHub top language](https://img.shields.io/github/languages/count/Emonoras-beta-repos/bloodorange-clicker-beta)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/t/Emonoras-beta-repos/bloodorange-clicker-beta)
 
