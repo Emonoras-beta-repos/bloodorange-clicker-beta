@@ -114,7 +114,7 @@ function opensavemenus(menu) {
 function generatesavecode() {
   const diag = document.getElementById("save-code-made");
   const savecodetxt = document.getElementById("savecode");
-  const savecode = `${buildings.join(".")}-${score}`;
+  const savecode = `${buildings.join(".")}-${score}-${cps}`;
   savecodetxt.innerHTML = savecode;
   diag.showModal();
 }
@@ -123,8 +123,9 @@ function importsavecode() {
   const input = document.getElementById("imported-save-code").value;
   if (!input) return;
 
-  const [buildingsArray, scoreCode] = input.split("-");
+  const [buildingsArray, scoreCode, cpsCode] = input.split("-").slice(0, 3);
   if (scoreCode) score = parseInt(scoreCode.trim());
+  if (cpsCode) cps = parseInt(cpsCode.trim());
 
   if (buildingsArray.includes(".")) {
     buildings = buildingsArray.split(".").map(Number);
