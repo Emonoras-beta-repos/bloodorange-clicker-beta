@@ -9,6 +9,9 @@
         <link rel="stylesheet" type="text/css" href="style.css" />
         <link rel="icon" type="icon" href="BOC.ico" />
 
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     </head>
     <body>
         <main class="game">
@@ -23,29 +26,29 @@
             <div class="buildings">
                 <div id="row1">
                     <div class="item">
-                        <button type="button" class="btn-cfiuc" onclick="purchase('cursor')" title="Congrats! You can click the button harder!"> Purchase a cursor</button>
+                        <button type="button" class="btn-cfiuc rubik-txt" onclick="purchase('cursor')" title="Congrats! You can click the button harder!"> Purchase a cursor</button>
                         <p class="cursor-owned">You Own: 0</p>
                         <p class="cursor-cost">Cost: 10</p>
                     </div>
                     <div class="item">
-                        <button type="button" class="btn-cfiuc" onclick="purchase('tree')" title="Orange tree with oranges :O">Purchase a tree</button>
+                        <button type="button" class="btn-cfiuc rubik-txt" onclick="purchase('tree')" title="Orange tree with oranges :O">Purchase a tree</button>
                         <p class="tree-owned">You Own: 0</p>
                         <p class="tree-cost">Cost: 100</p>
                     </div>
                     <div class="item">
-                        <button type="button" class="btn-cfiuc" onclick="purchase('shed')" title="Shed that can spawn boxes of oranges for no particular reason">Purchase a shed</button>
+                        <button type="button" class="btn-cfiuc rubik-txt" onclick="purchase('shed')" title="Shed that can spawn boxes of oranges for no particular reason">Purchase a shed</button>
                         <p class="shed-owned">You Own: 0</p>
                         <p class="shed-cost">Cost: 1000</p>
                     </div>
                 </div>
                 <div id="row2">
                     <div class="item">
-                        <button type="button" class="btn-cfiuc" onclick="purchase('farm')" title="I had no idea you liked slave labor">Purchase a farm</button>
+                        <button type="button" class="btn-cfiuc rubik-txt" onclick="purchase('farm')" title="I had no idea you liked slave labor">Purchase a farm</button>
                         <p class="farm-owned">You Own: 0</p>
                         <p class="farm-cost">Cost: 10000</p>
                     </div>
                     <div class="item">
-                        <button type="button" class="btn-cfiuc" onclick="purchase('orange-orchard')" title="I do not condone the use of unpaid human labor">Purchase an orange orchard</button>
+                        <button type="button" class="btn-cfiuc rubik-txt" onclick="purchase('orange-orchard')" title="I do not condone the use of unpaid human labor">Purchase an orange orchard</button>
                         <p class="orange-orchard-owned">You Own: 0</p>
                         <p class="orange-orchard-cost">Cost: 100000</p>
                     </div>
@@ -54,10 +57,10 @@
         </main>        
         <main class="save">
             <div class="save-container">
-                <button type="button" class="btn-cfstm" onclick="opensavemenus('savemenu')" title="Save the damn game already" id="diagbtn">Save the game</button>
+                <button type="button" class="btn-cfstm rubik-txt" onclick="opensavemenus('savemenu')" title="Save the damn game already" id="diagbtn">Save the game</button>
             </div>
             <div class="import-container">
-                <button type="button" class="btn-cfsi" onclick="opensavemenus('import-save-code')" title="Are you going to import your save or not?">Import Your save file here</button>
+                <button type="button" class="btn-cfsi rubik-txt" onclick="opensavemenus('import-save-code')" title="Are you going to import your save or not?">Import Your save file here</button>
             </div>
 
         </main>
