@@ -1,7 +1,7 @@
 // score, upgrades, and buildings variables
 let score = 0;
 let buildings = [0, 0, 0, 0, 0];
-
+let cps = 0;
 // Cost variables with their initial values
 let cursor_cost = 10;
 let tree_cost = 100;
@@ -47,13 +47,17 @@ function getCookies(neededCookie) {
         return null;
       }
     }
+    if (neededCookie === "cps" && cookie.startsWith("cps=")) {
+      return parseInt(cookie.substring("cps=".length)) || 0;
+    }
   }
   return null;
 }
 
-function setCookies(score, buildings) {
+function setCookies(score, buildings, cps) {
   document.cookie = `score=${score}; path=/`;
   document.cookie = `buildings=${JSON.stringify(buildings)}; path=/`;
+  document.cookie = `cps=${JSON.stringify(cps)}; path=/`;
 }
 
 /* Load cookie values on page (re)load */
@@ -69,6 +73,11 @@ if (savedBuildings && Array.isArray(savedBuildings)) {
   buildings = savedBuildings;
 } else {
   buildings = [0, 0, 0, 0, 0];
+}
+
+const savedCps = getCookies("cps");
+if (savedCps !== null) {
+  cps = savedCps;
 }
 
 // Update costs and UI on page load
@@ -135,7 +144,7 @@ async function scoreupdate() {
   h3.addClass("scoreupd");
   await sleep(51);
   h3.removeClass("scoreupd");
-  setCookies(score, buildings);
+  setCookies(score, buildings, cps);
 }
 
 function purchase(building) {
@@ -143,18 +152,22 @@ function purchase(building) {
   let buildingOC;
   let costOB;
   if (building == "cursor") {buildingOC = 0; costOB = cursor_cost}
-  if (building == "tree") {buildingOC = 1; costOB = tree_cost}
-  if (building == "shed") {buildingOC = 2; costOB = shed_cost}
-  if (building == "farm") {buildingOC = 3; costOB = farm_cost}
-  if (building == "orange-orchard") {buildingOC = 4; costOB = orange_orchard_cost}
+  if (building == "tree") {buildingOC = 1; costOB = tree_cost;}
+  if (building == "shed") {buildingOC = 2; costOB = shed_cost;}
+  if (building == "farm") {buildingOC = 3; costOB = farm_cost;}
+  if (building == "orange-orchard") {buildingOC = 4; costOB = orange_orchard_cost;}
   console.log(building);
   let array = ["cursor", "tree", "shed", "farm", "orange-orchard"]
 
   if (score >= costOB) {
     score -= costOB;
+    if (buildingOC == 1) {cps += 1;}
+    if (buildingOC == 2) {cps += 10;}
+    if (buildingOC == 3) {cps += 100;}
+    if (buildingOC == 4) {cps += 1000;}
     costOB *= 2;
     buildings[buildingOC]++;
-    setCookies(score, buildings); 
+    setCookies(score, buildings, cps); 
     updateCostsAndUI(); 
   } else {
     alert("Not enough points");
@@ -172,26 +185,11 @@ async function updateCounter() {
   }
 
   updateCostsAndUI();
-  setCookies(score, buildings);
+  setCookies(score, buildings, cps);
 }
 
 function updateScore() {
-  for (let i = 1; i < buildings.length; i++) {
-    if (buildings[i] > 0) {
-      if (buildings[i] === 1) {
-        score += buildings[i];
-      }
-      if (buildings[i] === 2) {
-        score += buildings[i] * 10;
-      }
-      if (buildings[i] === 3) {
-        score += buildings[i] * 100;
-      }
-      if (buildings[i] === 4) {
-        score += buildings[i] * 1000;
-      }
-    }
-  }
+  score += cps;
 }
 
 setInterval(updateCounter, 1); 
