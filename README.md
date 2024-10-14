@@ -9,7 +9,7 @@ Game Road Map:
 
 Creation of Idle Currency Creation and a few starting structures [V0.2] - **Released**
 
-Creation of a save transfer system [V0.3] - **In semi-active development**
+Creation of a save transfer system [V0.3] - **Released**
 
 Creation of Achivement, and upgrade system [V0.4] - **Development Beginning Soon**
 
