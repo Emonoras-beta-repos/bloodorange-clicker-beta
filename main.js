@@ -11,20 +11,8 @@ let orange_orchard_cost = 100000;
 
 // Extra variables
 const h3 = $(".scorenum");
-const building_cost = [
-  "cursor-cost",
-  "tree-cost",
-  "shed-cost",
-  "farm-cost",
-  "orange-orchard-cost",
-];
-const building_owned = [
-  "cursor-owned",
-  "tree-owned",
-  "shed-owned",
-  "farm-owned",
-  "orange-orchard-owned",
-];
+const building_cost = [ "cursor-cost", "tree-cost", "shed-cost", "farm-cost", "orange-orchard-cost", ];
+const building_owned = [ "cursor-owned", "tree-owned", "shed-owned", "farm-owned", "orange-orchard-owned", ];
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -88,19 +76,12 @@ function updateCostsAndUI() {
   farm_cost = 10000 * 2 ** buildings[3];
   orange_orchard_cost = 100000 * 2 ** buildings[4];
 
-  const cost_list = [
-    cursor_cost,
-    tree_cost,
-    shed_cost,
-    farm_cost,
-    orange_orchard_cost,
-  ];
+  const cost_list = [ cursor_cost, tree_cost, shed_cost, farm_cost, orange_orchard_cost, ];
 
   for (let i = 0; i < 5; i++) {
     $(`.${building_owned[i]}`).text(`You Own: ${buildings[i]}`);
     $(`.${building_cost[i]}`).text(`Cost: ${cost_list[i]}`);
   }
-
 }
 
 updateCostsAndUI(); // Initial UI update
@@ -189,9 +170,7 @@ async function updateCounter() {
   setCookies(score, buildings, cps);
 }
 
-function updateScore() {
-  score += cps;
-}
+function updateScore() { score += cps; }
 
 setInterval(updateCounter, 1); 
 setInterval(updateScore, 1000);
