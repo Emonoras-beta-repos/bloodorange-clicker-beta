@@ -11,7 +11,7 @@ let orange_orchard_cost = 100000;
 
 // Achivement variables
 let clicks = 0;
-
+let shown = false;
 // Upgrade variables
 let cursor_upgrade_bonus = 0;
 let tree_upgrade_bonus = 0;
@@ -196,8 +196,9 @@ async function updateCounter() {
   updateCostsAndUI();
   setCookies(score, buildings, cps);
 
-  if (clicks === 1000000) {
-    alert("How the hell did you click so many damn times? A million is too much man. Touch grass.")
+  if (clicks === 1000000 && shown == false) {
+    alert("How the hell did you click so many damn times? A million is too much man. Touch grass.");
+    shown = true;
   }
 }
 
