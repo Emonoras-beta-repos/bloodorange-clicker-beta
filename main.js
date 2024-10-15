@@ -98,10 +98,10 @@ function updateCostsAndUI() {
   orange_orchard_cost = 100000 * 2 ** buildings[4];
 
   cursor_cost = scaleCost(cursor_cost, 1000, 1.5, 10);
-  tree_cost = scaleCost(tree_cost, 10000, 2, 100);
-  shed_cost = scaleCost(shed_cost, 100000, 3, 1000);
-  farm_cost = scaleCost(farm_cost, 1000000, 4, 10000);
-  orange_orchard_cost = scaleCost(orange_orchard_cost, 1000000, 4, 10000);
+  tree_cost = scaleCost(tree_cost, 1000, 2, 100);
+  shed_cost = scaleCost(shed_cost, 10000, 3, 1000);
+  farm_cost = scaleCost(farm_cost, 100000, 4, 10000);
+  orange_orchard_cost = scaleCost(orange_orchard_cost, 100000, 4, 10000);
   const cost_list = [ cursor_cost, tree_cost, shed_cost, farm_cost, orange_orchard_cost, ];
 
   for (let i = 0; i < 5; i++) {
