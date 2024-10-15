@@ -118,29 +118,25 @@ body {
 @media (max-width: 100px) {
   html {
     background: linear-gradient(180deg, rgba(255, 153, 4, 1) 0%, rgba(219, 159, 41, 1) 50%, rgba(255, 229, 0, 1) 100%);
+    overflow-y: hidden;
   }
   
-  .shop {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start; 
-    align-items: flex-start;
-    width: 100px;
-    position: absolute;
-    right: -50px; 
-    top: 10%; 
-    max-height: 80vh; 
-    overflow-y: auto; 
-  }
-
   * {
     color: black;
   }
-
+  
+  body {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
   .btn-cfc {
     position: absolute;
-    top: 40%;
-    left: 20%;
+    top: 20%;
+    left: 15%;
     border-radius: 100px;
     width: 80px;
     height: 80px;
@@ -160,11 +156,25 @@ body {
     transform: translateY(2px);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   }
-
+  
+  .scorenum {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    font-size: 30px;
+    border: 1px solid black;
+    width: calc(2 + 40px + 1em);
+    height: 50px;
+    padding: 1rem;
+    border-radius: 40px;
+    overflow: hidden;
+  }
+  
   .scoreupd {
     animation: scoreupdate 0.5s both;
   }
-
+  
   @keyframes scoreupdate {
     0% { 
       transform: scale(0); 
@@ -176,15 +186,20 @@ body {
       transform: scale(0); 
     }
   }
-
-  body {
-    position: relative;
-    height: 100vh;
+  
+  .shop {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-start; 
+    align-items: flex-start;
+    width: 300px;
+    position: absolute;
+    right: 0; 
+    top: 10%; 
+    max-height: 80vh; 
+    overflow-y: auto; 
   }
-
+  
   .btn-cfiuc {
     border-radius: 20px;
   }
@@ -195,14 +210,22 @@ body {
   
   .btn-cfsi {
     border-radius: 20px;
-  }  
+  }
+  
+  .item {
+    flex: 1 0 30%; 
+    box-sizing: border-box; 
+    margin: 5px; 
+    padding: 10px;
+    text-align: center; 
+  }
   
   .save {
     position: relative;
-    left: -25%;
+    left: -65%;
     top: 40%;
   }
-
+  
   .rubik-txt {
     font-family: "Rubik", sans-serif;
     font-optical-sizing: auto;
