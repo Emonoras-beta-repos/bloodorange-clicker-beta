@@ -97,7 +97,7 @@ function updateCostsAndUI() {
   farm_cost = 10000 * 2 ** buildings[3];
   orange_orchard_cost = 100000 * 2 ** buildings[4];
 
-  cursor_cost = scaleCost(cursor_cost, 1000, 1.5, 10);
+  cursor_cost = scaleCost(cursor_cost, 1000, 2, 10);
   tree_cost = scaleCost(tree_cost, 1000, 2, 100);
   shed_cost = scaleCost(shed_cost, 10000, 3, 1000);
   farm_cost = scaleCost(farm_cost, 100000, 4, 10000);
