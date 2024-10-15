@@ -122,6 +122,19 @@ body {
     background: linear-gradient(180deg, rgba(255, 153, 4, 1) 0%, rgba(219, 159, 41, 1) 50%, rgba(255, 229, 0, 1) 100%);
   }
   
+  .shop {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; 
+    align-items: flex-start;
+    width: 300px;
+    position: absolute;
+    right: -10px; 
+    top: 10%; 
+    max-height: 80vh; 
+    overflow-y: auto; 
+  }
+
   * {
     color: black;
   }
@@ -342,7 +355,7 @@ body {
   * {
     color: black;
   }
-  
+
   @keyframes scoreupdate {
     0% { 
       transform: scale(0); 
