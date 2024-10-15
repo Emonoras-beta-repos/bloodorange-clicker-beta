@@ -116,3 +116,206 @@ body {
   font-weight: 300;
   font-style: normal;
 }
+
+@media (max-width: 100px) {
+  html {
+    background: linear-gradient(180deg, rgba(255, 153, 4, 1) 0%, rgba(219, 159, 41, 1) 50%, rgba(255, 229, 0, 1) 100%);
+  }
+  
+  * {
+    color: black;
+  }
+
+  .scoreupd {
+    animation: scoreupdate 0.5s both;
+  }
+
+  @keyframes scoreupdate {
+    0% { 
+      transform: scale(0); 
+    }
+    50% {
+      transform: scale(1);
+    }
+    100% { 
+      transform: scale(0); 
+    }
+  }
+
+  body {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btn-cfiuc {
+    border-radius: 20px;
+  }
+  
+  .btn-cfstm {
+   border-radius: 20px;
+  }
+  
+  .btn-cfsi {
+    border-radius: 20px;
+  }  
+  
+  .rubik-txt {
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+  }
+}
+
+@media (max-width: 200px) {
+  html {
+    background: linear-gradient(180deg, rgba(255, 153, 4, 1) 0%, rgba(219, 159, 41, 1) 50%, rgba(255, 229, 0, 1) 100%);
+  }
+
+  @keyframes scoreupdate {
+    0% { 
+      transform: scale(0); 
+    }
+    50% {
+      transform: scale(1);
+    }
+    100% { 
+      transform: scale(0); 
+    }
+  }
+
+  .btn-cfiuc {
+    border-radius: 20px;
+  }
+  
+  .btn-cfstm {
+   border-radius: 20px;
+  }
+  
+  .btn-cfsi {
+    border-radius: 20px;
+  }  
+}
+
+@media (max-width: 400px) {
+  html {
+    background: linear-gradient(180deg, rgba(255, 153, 4, 1) 0%, rgba(219, 159, 41, 1) 50%, rgba(255, 229, 0, 1) 100%);
+  }
+
+  @keyframes scoreupdate {
+    0% { 
+      transform: scale(0); 
+    }
+    50% {
+      transform: scale(1);
+    }
+    100% { 
+      transform: scale(0); 
+    }
+  }
+
+  .btn-cfiuc {
+    border-radius: 20px;
+  }
+  
+  .btn-cfstm {
+   border-radius: 20px;
+  }
+  
+  .btn-cfsi {
+    border-radius: 20px;
+  }  
+}
+
+@media (max-width: 800px) {
+  html {
+    background: linear-gradient(180deg, rgba(255, 153, 4, 1) 0%, rgba(219, 159, 41, 1) 50%, rgba(255, 229, 0, 1) 100%);
+  }
+
+  @keyframes scoreupdate {
+    0% { 
+      transform: scale(0); 
+    }
+    50% {
+      transform: scale(1);
+    }
+    100% { 
+      transform: scale(0); 
+    }
+  }
+
+  .btn-cfiuc {
+    border-radius: 20px;
+  }
+  
+  .btn-cfstm {
+   border-radius: 20px;
+  }
+  
+  .btn-cfsi {
+    border-radius: 20px;
+  }  
+}
+
+@media (max-width: 1600px) {
+  html {
+    background: linear-gradient(180deg, rgba(255, 153, 4, 1) 0%, rgba(219, 159, 41, 1) 50%, rgba(255, 229, 0, 1) 100%);
+  }
+
+  @keyframes scoreupdate {
+    0% { 
+      transform: scale(0); 
+    }
+    50% {
+      transform: scale(1);
+    }
+    100% { 
+      transform: scale(0); 
+    }
+  }
+
+  .btn-cfiuc {
+    border-radius: 20px;
+  }
+  
+  .btn-cfstm {
+   border-radius: 20px;
+  }
+  
+  .btn-cfsi {
+    border-radius: 20px;
+  }  
+}
+
+@media (max-width: 3200px) {
+  html {
+    background: linear-gradient(180deg, rgba(255, 153, 4, 1) 0%, rgba(219, 159, 41, 1) 50%, rgba(255, 229, 0, 1) 100%);
+  }
+
+  @keyframes scoreupdate {
+    0% { 
+      transform: scale(0); 
+    }
+    50% {
+      transform: scale(1);
+    }
+    100% { 
+      transform: scale(0); 
+    }
+  }
+
+  .btn-cfiuc {
+    border-radius: 20px;
+  }
+  
+  .btn-cfstm {
+   border-radius: 20px;
+  }
+  
+  .btn-cfsi {
+    border-radius: 20px;
+  }  
+}

@@ -11,12 +11,13 @@ let orange_orchard_cost = 100000;
 
 // Achivement variables
 let clicks = 0;
-let achivements = [
-  { name: "clicker",
-    value: false,
-    description: "You click the cursor 100 times."
-  }
-]
+
+// Upgrade variables
+let cursor_upgrade_bonus = 0;
+let tree_upgrade_bonus = 0;
+let shed_upgrade_bonus = 0;
+let farm_upgrade_bonus = 0;
+let orange_orchard_upgrade_bonus = 0;
 
 // Extra variables
 const h3 = $(".scorenum");
@@ -201,9 +202,6 @@ async function updateCounter() {
 }
 
 function updateScore() { score += cps; }
-
-
-
 
 setInterval(updateCounter, 1); 
 setInterval(updateScore, 1000);
