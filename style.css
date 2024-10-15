@@ -175,6 +175,10 @@ body {
     background: linear-gradient(180deg, rgba(255, 153, 4, 1) 0%, rgba(219, 159, 41, 1) 50%, rgba(255, 229, 0, 1) 100%);
   }
 
+  * {
+    color: black;
+  }
+
   @keyframes scoreupdate {
     0% { 
       transform: scale(0); 
@@ -198,6 +202,13 @@ body {
   .btn-cfsi {
     border-radius: 20px;
   }  
+
+  .rubik-txt {
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+  }
 }
 
 @media (max-width: 400px) {
@@ -205,6 +216,10 @@ body {
     background: linear-gradient(180deg, rgba(255, 153, 4, 1) 0%, rgba(219, 159, 41, 1) 50%, rgba(255, 229, 0, 1) 100%);
   }
 
+  * {
+    color: black;
+  }
+
   @keyframes scoreupdate {
     0% { 
       transform: scale(0); 
@@ -228,6 +243,13 @@ body {
   .btn-cfsi {
     border-radius: 20px;
   }  
+
+  .rubik-txt {
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+  }
 }
 
 @media (max-width: 800px) {
@@ -235,6 +257,10 @@ body {
     background: linear-gradient(180deg, rgba(255, 153, 4, 1) 0%, rgba(219, 159, 41, 1) 50%, rgba(255, 229, 0, 1) 100%);
   }
 
+  * {
+    color: black;
+  }
+
   @keyframes scoreupdate {
     0% { 
       transform: scale(0); 
@@ -258,6 +284,13 @@ body {
   .btn-cfsi {
     border-radius: 20px;
   }  
+
+  .rubik-txt {
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+  }
 }
 
 @media (max-width: 1600px) {
@@ -265,6 +298,10 @@ body {
     background: linear-gradient(180deg, rgba(255, 153, 4, 1) 0%, rgba(219, 159, 41, 1) 50%, rgba(255, 229, 0, 1) 100%);
   }
 
+  * {
+    color: black;
+  }
+
   @keyframes scoreupdate {
     0% { 
       transform: scale(0); 
@@ -288,6 +325,13 @@ body {
   .btn-cfsi {
     border-radius: 20px;
   }  
+
+  .rubik-txt {
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+  }
 }
 
 @media (max-width: 3200px) {
@@ -295,6 +339,10 @@ body {
     background: linear-gradient(180deg, rgba(255, 153, 4, 1) 0%, rgba(219, 159, 41, 1) 50%, rgba(255, 229, 0, 1) 100%);
   }
 
+  * {
+    color: black;
+  }
+  
   @keyframes scoreupdate {
     0% { 
       transform: scale(0); 
@@ -318,4 +366,11 @@ body {
   .btn-cfsi {
     border-radius: 20px;
   }  
+
+  .rubik-txt {
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+  }
 }
