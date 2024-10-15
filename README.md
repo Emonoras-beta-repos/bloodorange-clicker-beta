@@ -11,9 +11,9 @@ Creation of Idle Currency Creation and a few starting structures [V0.2] - **Rele
 
 Creation of a save transfer system [V0.3] - **Released**
 
-Creation of Achivement, and upgrade system [V0.4] - **Developement started**
+Graphics, and UI revamp [V0.4] - **Developement started**
 
-Graphics, and UI revamp [V0.5] - **Not Yet started**
+Creation of Achivement, and upgrade system [V0.5] - **Not Yet started**
 
 Addtion of 10 new buildings (Featureless most likely) [V0.6] - **Not Yet started**
 
