@@ -90,16 +90,7 @@ function scaleCost(cost, threshold, scalingFactor, additionalCost = 0) {
   return Math.floor(scaledCost);
 }
 
-function updateCostsAndUI() {
-  /* return Math.floor(baseCost * Math.pow(1.15, count)); 
-  cursor_cost = scaleCost(cursor_cost, 1000, 2, 10);
-  tree_cost = scaleCost(tree_cost, 1000, 2, 100);
-  shed_cost = scaleCost(shed_cost, 10000, 3, 1000);
-  farm_cost = scaleCost(farm_cost, 100000, 4, 10000);
-  orange_orchard_cost = scaleCost(orange_orchard_cost, 100000, 4, 10000);
-  */
-  
-
+function updateUI() {
   const cost_list = [ cursor_cost, tree_cost, shed_cost, farm_cost, orange_orchard_cost, ];
 
   for (let i = 0; i < 5; i++) {
@@ -108,7 +99,7 @@ function updateCostsAndUI() {
   }
 }
 
-updateCostsAndUI(); // Initial UI update
+updateUI(); // Initial UI update
 
 /* Save Menu functions */
 function opensavemenus(menu) {
@@ -138,7 +129,7 @@ function importsavecode() {
     buildings = buildingsArray.split("").map(Number);
   }
 
-  updateCostsAndUI(); // Update UI after importing
+  updateUI(); // Update UI after importing
 }
 
 async function scoreupdate() {
@@ -211,7 +202,7 @@ function purchase(building) {
     }
     buildings[buildingOC]++;
     setCookies(score, buildings, cps); 
-    updateCostsAndUI(); 
+    updateUI(); 
   } else {
     alert("Not enough points");
   }
@@ -227,7 +218,7 @@ async function updateCounter() {
     h3.removeClass("scoreupd");
   }
 
-  updateCostsAndUI();
+  updateUI();
   setCookies(score, buildings, cps);
 
   if (clicks === 1000000 && shown == false) {
