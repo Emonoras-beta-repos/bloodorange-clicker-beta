@@ -14,6 +14,7 @@ let orange_orchard_cost = 100000;
 let clicks = 0;
 let shown = false;
 let achieves = achievements;
+console.log(achieves)
 // Upgrade variables
 let cursor_upgrade_bonus = 0;
 let tree_upgrade_bonus = 0;
@@ -82,15 +83,6 @@ if (savedCps !== null) {
 
 // Update UI
 
-function scaleCost(cost, threshold, scalingFactor, additionalCost = 0) {
-  if (cost <= threshold) {
-    return Math.floor(cost);
-  }
-
-  let scaledCost = (cost - threshold) / scalingFactor + threshold;
-  scaledCost += additionalCost;
-  return Math.floor(scaledCost);
-}
 
 function updateUI() {
   const cost_list = [ cursor_cost, tree_cost, shed_cost, farm_cost, orange_orchard_cost, ];
@@ -209,7 +201,6 @@ function purchase(building) {
     alert("Not enough points");
   }
 }
-
 async function updateCounter() {
   const h3text = parseInt($(".scorenum").text());
 
@@ -243,6 +234,14 @@ function reset() {
 function upgrade(upgrade) {
   
 }
+
+window.purchase = purchase;
+window.reset = reset;
+window.scoreupdate = scoreupdate;
+window.opensavemenus = opensavemenus;
+window.generatesavecode = generatesavecode;
+window.importsavecode = importsavecode;
+window.upgrade = upgrade;
 
 setInterval(updateCounter, 1); 
 setInterval(updateScore, 1000);
