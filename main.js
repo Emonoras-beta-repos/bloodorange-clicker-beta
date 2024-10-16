@@ -1,5 +1,5 @@
 import { achievements } from "./achievements.js";
-
+alert("This website is meant to be used on large screens such as tablets, but not phones.")
 // score, upgrades, and buildings variables
 let score = 0;
 let buildings = [0, 0, 0, 0, 0];
