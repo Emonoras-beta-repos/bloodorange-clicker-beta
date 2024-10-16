@@ -210,6 +210,7 @@ function updateScore() { score += cps; }
 function reset() {
   clicks = 0;
   score = 0;
+  cps = 0;
   for (let i = 0; i < buildings.length; i++) {
     buildings[i] = 0;
   }
