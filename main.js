@@ -12,6 +12,13 @@ let orange_orchard_cost = 100000;
 // Achivement variables
 let clicks = 0;
 let shown = false;
+let achievements = [
+  {
+    name: "Welcome to BOC",
+    description: "You played the game for the first time",
+    earned: false,
+  },
+];
 // Upgrade variables
 let cursor_upgrade_bonus = 0;
 let tree_upgrade_bonus = 0;
@@ -78,7 +85,7 @@ if (savedCps !== null) {
   cps = savedCps;
 }
 
-// Update costs and UI on page load
+// Update UI
 
 function scaleCost(cost, threshold, scalingFactor, additionalCost = 0) {
   if (cost <= threshold) {
