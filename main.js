@@ -1,3 +1,4 @@
+import { achievements } from "./achievements.js";
 // score, upgrades, and buildings variables
 let score = 0;
 let buildings = [0, 0, 0, 0, 0];
@@ -12,7 +13,7 @@ let orange_orchard_cost = 100000;
 // Achivement variables
 let clicks = 0;
 let shown = false;
-
+let achieves = achievements;
 // Upgrade variables
 let cursor_upgrade_bonus = 0;
 let tree_upgrade_bonus = 0;
