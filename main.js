@@ -91,13 +91,14 @@ function scaleCost(cost, threshold, scalingFactor, additionalCost = 0) {
 }
 
 function updateCostsAndUI() {
-  cursor_cost = Math.floor(cursor_cost * 0.15 ** buildings[0]);
-  tree_cost = Math.floor(tree_cost * 0.15 ** buildings[1]);
-  shed_cost = Math.floor(shed_cost * 0.15 ** buildings[2]);
-  farm_cost = Math.floor(farm_cost * 0.15 ** buildings[3]);
-  orange_orchard_cost = Math.floor(orange_orchard_cost * 0.15 ** buildings[4]);
+  cursor_cost = Math.floor(cursor_cost * Math.pow(1.15, buildings[0]));
+  tree_cost = Math.floor(tree_cost * Math.pow(1.15, buildings[1]));
+  shed_cost = Math.floor(shed_cost * Math.pow(1.15, buildings[2]));
+  farm_cost = Math.floor(farm_cost * Math.pow(1.15, buildings[3]));
+  orange_orchard_cost = Math.floor(orange_orchard_cost * Math.pow(1.15, buildings[4]));
 
-  /* cursor_cost = scaleCost(cursor_cost, 1000, 2, 10);
+  /* return Math.floor(baseCost * Math.pow(1.15, count)); 
+  cursor_cost = scaleCost(cursor_cost, 1000, 2, 10);
   tree_cost = scaleCost(tree_cost, 1000, 2, 100);
   shed_cost = scaleCost(shed_cost, 10000, 3, 1000);
   farm_cost = scaleCost(farm_cost, 100000, 4, 10000);
