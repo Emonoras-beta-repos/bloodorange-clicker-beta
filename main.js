@@ -275,6 +275,7 @@ function reset() {
   shed_cost = 1000;
   farm_cost = 10000;
   orange_orchard_cost = 100000;
+  setCookies(score, buildings, cps, cursor_cost, tree_cost, shed_cost, farm_cost, orange_orchard_cost);
 }
 
 function upgrade(upgrade) {
