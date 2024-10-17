@@ -1,8 +1,9 @@
 import { achievements } from "./achievements.js";
 import { upgrades } from "./upgrades.js";
+import { purchase } from "./purchase.js";
 // score, upgrades, and buildings variables
 let score = 0;
-let buildings = [0, 0, 0, 0, 0];
+export let buildings = [0, 0, 0, 0, 0];
 let cps = 0;
 
 // Cost variables with their initial values
@@ -171,7 +172,7 @@ function importsavecode() {
   updateUI(); // Update UI after importing
 }
 
-async function scoreupdate() {
+export async function scoreUpdate() {
   clicks++;
   score++;
   if (buildings[0] > 0) {
@@ -184,67 +185,7 @@ async function scoreupdate() {
   setCookies(score, buildings, cps, cursor_cost, tree_cost, shed_cost, farm_cost, orange_orchard_cost);
 }
 
-function purchase(building) {
-  let buildingOC;
-  let costOB;
-  if (building == "cursor") {
-    buildingOC = 0; 
-    costOB = cursor_cost;
-  }
-  if (building == "tree") {
-    buildingOC = 1; 
-    costOB = tree_cost;
-    
-  }
-  if (building == "shed") {buildingOC = 2; costOB = shed_cost;}
-  if (building == "farm") {buildingOC = 3; costOB = farm_cost;}
-  if (building == "orange-orchard") {buildingOC = 4; costOB = orange_orchard_cost;}
-  console.log(building);
-  let array = ["cursor", "tree", "shed", "farm", "orange-orchard"]
 
-  if (score >= costOB) {
-    score -= costOB;
-    if (buildingOC == 0) {
-      cursor_cost = Math.floor(cursor_cost * Math.pow(1.15, buildings[0]));
-      if (cursor_cost == 10) {
-        cursor_cost ++;
-      }
-    }
-    if (buildingOC == 1) {
-      cps += 1;
-      tree_cost = Math.floor(tree_cost * Math.pow(1.15, buildings[1]));
-      if (tree_cost == 100) {
-        tree_cost += 10;
-      }
-    }
-    if (buildingOC == 2) {
-      cps += 10;
-      shed_cost = Math.floor(shed_cost * Math.pow(1.15, buildings[2]));
-      if (shed_cost == 1000) {
-        shed_cost += 100;
-      }
-    }
-    if (buildingOC == 3) {
-      cps += 100;
-      farm_cost = Math.floor(farm_cost * Math.pow(1.15, buildings[3]));
-      if (farm_cost == 10000) {
-        farm_cost += 1000;
-      }
-    }
-    if (buildingOC == 4) {
-      cps += 1000;
-      orange_orchard_cost = Math.floor(orange_orchard_cost * Math.pow(1.15, buildings[4]));
-      if (orange_orchard_cost == 100000) {
-        orange_orchard_cost += 10000;
-      }
-    }
-    buildings[buildingOC]++;
-    setCookies(score, buildings, cps, cursor_cost, tree_cost, shed_cost, farm_cost, orange_orchard_cost); 
-    updateUI(); 
-  } else {
-    alert("Not enough points");
-  }
-}
 async function updateCounter() {
   const h3text = parseInt($(".scorenum").text());
 
@@ -285,9 +226,10 @@ function upgrade(upgrade) {
   
 }
 
+purchase("N?A")
+
 window.purchase = purchase;
-window.reset = reset;
-window.scoreupdate = scoreupdate;
+window.scoreUpdate = scoreUpdate;
 window.opensavemenus = opensavemenus;
 window.generatesavecode = generatesavecode;
 window.importsavecode = importsavecode;

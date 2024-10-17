@@ -1,3 +1,4 @@
+import {buildings} from './main.js';
 export let upgrades = [
     {
         name: "Click Power #1",
