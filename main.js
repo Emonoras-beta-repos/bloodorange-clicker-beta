@@ -33,8 +33,6 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-/* Cookie functions (import, and export) */
-
 function getCookies(neededCookie) {
   const cookies = document.cookie.split(";");
   for (let cookie of cookies) {
@@ -82,8 +80,6 @@ function setCookies(score, buildings, cps, ccost, tcost, scost, fcost, oocost) {
   document.cookie = `farm_cost=${JSON.stringify(fcost)}; path=/`;
   document.cookie = `orange_orchard_cost=${JSON.stringify(oocost)}; path=/`;
 }
-
-/* Load cookie values on page (re)load */
 
 const savedScore = getCookies("score");
 if (savedScore !== null) {
@@ -275,6 +271,11 @@ function reset() {
   for (let i = 0; i < buildings.length; i++) {
     buildings[i] = 0;
   }
+  cursor_cost = 10;
+  tree_cost = 100;
+  shed_cost = 1000;
+  farm_cost = 10000;
+  orange_orchard_cost = 100000;
 }
 
 function upgrade(upgrade) {
