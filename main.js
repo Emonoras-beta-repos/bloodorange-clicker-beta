@@ -182,7 +182,6 @@ async function scoreupdate() {
 }
 
 function purchase(building) {
-  const buildingIndex = [0,1,2,3,4];
   let buildingOC;
   let costOB;
   if (building == "cursor") {
