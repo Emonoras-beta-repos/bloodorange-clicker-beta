@@ -3,6 +3,7 @@ import { achievements } from "./achievements.js";
 let score = 0;
 let buildings = [0, 0, 0, 0, 0];
 let cps = 0;
+
 // Cost variables with their initial values
 let cursor_cost = 10;
 let tree_cost = 100;
@@ -15,6 +16,7 @@ let clicks = 0;
 let shown = false;
 let achieves = achievements;
 console.log(achieves)
+
 // Upgrade variables
 let cursor_upgrade_bonus = 0;
 let tree_upgrade_bonus = 0;
