@@ -53,14 +53,34 @@ function getCookies(neededCookie) {
     if (neededCookie === "cps" && cookie.startsWith("cps=")) {
       return parseInt(cookie.substring("cps=".length)) || 0;
     }
+    if (neededCookie === "cursor_cost" && cookie.startsWith("cursor_cost=")) {
+      return parseInt(cookie.substring("cursor_cost=".length)) || 10;
+    }
+    if (neededCookie === "tree_cost" && cookie.startsWith("tree_cost=")) {
+      return parseInt(cookie.substring("tree_cost=".length)) || 100;
+    }
+    if (neededCookie === "shed_cost" && cookie.startsWith("shed_cost=")) {
+      return parseInt(cookie.substring("shed_cost=".length)) || 1000;
+    }
+    if (neededCookie === "farm_cost" && cookie.startsWith("farm_cost=")) {
+      return parseInt(cookie.substring("farm_cost=".length)) || 10000;
+    }
+    if (neededCookie === "orange_orchard_cost" && cookie.startsWith("orange_orchard_cost=")) {
+      return parseInt(cookie.substring("orange_orchard_cost=".length)) || 100000;
+    }
   }
   return null;
 }
 
-function setCookies(score, buildings, cps) {
+function setCookies(score, buildings, cps, ccost, tcost, scost, fcost, oocost) {
   document.cookie = `score=${score}; path=/`;
   document.cookie = `buildings=${JSON.stringify(buildings)}; path=/`;
   document.cookie = `cps=${JSON.stringify(cps)}; path=/`;
+  document.cookie = `cursor_cost=${JSON.stringify(ccost)}; path=/`;
+  document.cookie = `tree_cost=${JSON.stringify(tcost)}; path=/`;
+  document.cookie = `shed_cost=${JSON.stringify(scost)}; path=/`;
+  document.cookie = `farm_cost=${JSON.stringify(fcost)}; path=/`;
+  document.cookie = `orange_orchard_cost=${JSON.stringify(oocost)}; path=/`;
 }
 
 /* Load cookie values on page (re)load */
@@ -83,8 +103,32 @@ if (savedCps !== null) {
   cps = savedCps;
 }
 
-// Update UI
+const savedCCost = getCookies("cursor_cost");
+if (savedCCost !== null) {
+  cursor_cost = savedCCost;
+}
 
+const savedTCost = getCookies("tree_cost");
+if (savedTCost !== null) {
+  tree_cost = savedTCost;
+}
+
+const savedSCost = getCookies("shed_cost");
+if (savedSCost !== null) {
+  shed_cost = savedSCost;
+}
+
+const savedFCost = getCookies("farm_cost");
+if (savedFCost !== null) {
+  farm_cost = savedFCost;
+}
+
+const savedOOCost = getCookies("orange_orchard_cost");
+if (savedOOCost !== null) {
+  orange_orchard_cost = savedOOCost;
+}
+
+// Update UI 
 
 function updateUI() {
   const cost_list = [ cursor_cost, tree_cost, shed_cost, farm_cost, orange_orchard_cost, ];
@@ -138,7 +182,7 @@ async function scoreupdate() {
   h3.addClass("scoreupd");
   await sleep(51);
   h3.removeClass("scoreupd");
-  setCookies(score, buildings, cps);
+  setCookies(score, buildings, cps, cursor_cost, tree_cost, shed_cost, farm_cost, orange_orchard_cost);
 }
 
 function purchase(building) {
@@ -197,7 +241,7 @@ function purchase(building) {
       }
     }
     buildings[buildingOC]++;
-    setCookies(score, buildings, cps); 
+    setCookies(score, buildings, cps, cursor_cost, tree_cost, shed_cost, farm_cost, orange_orchard_cost); 
     updateUI(); 
   } else {
     alert("Not enough points");
@@ -214,7 +258,7 @@ async function updateCounter() {
   }
 
   updateUI();
-  setCookies(score, buildings, cps);
+  setCookies(score, buildings, cps, cursor_cost, tree_cost, shed_cost, farm_cost, orange_orchard_cost);
 
   if (clicks === 1000000 && shown == false) {
     alert("How the hell did you click so many damn times? A million is too much man. Touch grass.");
