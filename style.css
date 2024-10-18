@@ -80,7 +80,7 @@ body {
   top: 10%; 
   max-height: 80vh; 
   overflow-y: auto; 
-  scrollbar-width: thin;
+  scrollbar-width: 10px;
   scrollbar-color: black;
 }
 
