@@ -80,6 +80,8 @@ body {
   top: 10%; 
   max-height: 80vh; 
   overflow-y: auto; 
+  scrollbar-width: thin;
+  scrollbar-color: black;
 }
 
 .btn-cfiuc {
