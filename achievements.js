@@ -20,6 +20,16 @@ export let achievements = [
         earned: false,
     },
     {
+        name: "One million fold button",
+        description: "You clicked 1000000 times",
+        earned: false,
+    },
+    {
+        name: "Ten billion fold button",
+        description: "You clicked 10000000000 times",
+        earned: false,
+    },
+    {
         name: "The button is in pain",
         description: "Stop clicking please",
         earned: false,
@@ -27,6 +37,21 @@ export let achievements = [
     {
         name: "Stop abusing the button",
         description: "Stop please its in pain",
+        earned: false,
+    },
+    {
+        name: "Tree",
+        description: "You bought tree",
+        earned: false,
+    },
+    {
+        name: "Click harder",
+        description: "Why do you have so many cursors?",
+        earned: false,
+    },
+    {
+        name: "Why",
+        description: "What the actual fuck",
         earned: false,
     },
     {
