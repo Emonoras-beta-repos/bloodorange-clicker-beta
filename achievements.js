@@ -55,6 +55,11 @@ export let achievements = [
         earned: false,
     },
     {
+        name: "Made History",
+        description: "How?",
+        earned: "False"
+    },
+    {
         name: "Template Achievement",
         description: "The achievement template",
         earned: false,
